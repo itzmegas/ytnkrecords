@@ -1,4 +1,6 @@
 ---
+import Logo from "./Logo.astro";
+
 const year = new Date().getFullYear();
 ---
 
@@ -7,9 +9,7 @@ const year = new Date().getFullYear();
     class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
   >
     <div class="text-center md:text-left">
-      <h3 class="text-xl font-display font-bold text-neon-purple">
-        YTNK RECORDS
-      </h3>
+      <Logo size="md" showRecords={true} />
       <p class="text-gray-500 text-sm mt-2">Psychedelic Trance Label</p>
     </div>
 

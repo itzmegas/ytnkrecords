@@ -1,4 +1,6 @@
 ---
+import Logo from "./Logo.astro";
+
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Artists", href: "/artists" },
@@ -9,8 +11,8 @@ const navItems = [
 
 <header class="fixed top-0 left-0 w-full z-50 glass">
   <nav class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-    <a href="/" class="text-2xl font-display font-bold text-neon-cyan tracking-tighter">
-      YTNK<span class="text-white">RECORDS</span>
+    <a href="/" class="hover:opacity-80 transition-opacity">
+      <Logo size="md" showRecords={true} />
     </a>
     
     <ul class="flex gap-8">

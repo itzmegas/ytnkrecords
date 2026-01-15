@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  artist: CollectionEntry<"artists">;
+}
+
+const { artist } = Astro.props;
+---
+
+<a 
+  href={`/artists/${artist.slug}`}
+  class="glass overflow-hidden group hover:neon-border-purple transition-all duration-500 block"
+>
+  <div class="aspect-[3/4] overflow-hidden relative">
+    <Image 
+      src={artist.data.image} 
+      alt={artist.data.name}
+      width={400}
+      height={533}
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+    />
+    <div class="absolute inset-0 bg-linear-to-t from-dark via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+    <div class="absolute bottom-4 left-4">
+       <h3 class="text-2xl font-display font-bold leading-tight group-hover:text-neon-cyan transition-colors">{artist.data.name}</h3>
+    </div>
+  </div>
+</a>

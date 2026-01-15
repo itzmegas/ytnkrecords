@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ReleaseCard from "../../components/ReleaseCard.astro";
+
+const releases = await getCollection("releases");
+// Sort by date descending
+releases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="Releases | Ytnk Records">
+  <div class="pt-32 pb-24 max-w-7xl mx-auto px-4">
+    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div>
+        <h1 class="text-5xl md:text-7xl font-display font-black tracking-tighter neon-glow-purple uppercase italic">
+          THE <span class="text-neon-cyan">DISCOGRAPHY</span>
+        </h1>
+        <p class="text-gray-400 mt-4 max-w-2xl text-lg uppercase tracking-widest">
+          Sonic architectures and ritualistic vibrations
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {releases.map((release) => (
+        <ReleaseCard release={release} />
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  release: CollectionEntry<"releases">;
+}
+
+const { release } = Astro.props;
+---
+
+<div class="glass overflow-hidden group hover:neon-border-purple transition-all duration-500">
+  <div class="aspect-square overflow-hidden">
+    <Image 
+      src={release.data.cover} 
+      alt={release.data.title}
+      width={400}
+      height={400}
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+    />
+  </div>
+  
+  <div class="p-4">
+    <p class="text-xs text-neon-cyan uppercase tracking-tighter mb-1">{release.data.type}</p>
+    <h3 class="text-lg font-display font-bold leading-tight">{release.data.title}</h3>
+    <p class="text-gray-400 text-sm mt-1">{release.data.date.getFullYear()}</p>
+  </div>
+</div>

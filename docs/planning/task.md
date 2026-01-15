@@ -1,0 +1,24 @@
+# Task List: Ytnk Records Website
+
+- [ ] **Project Setup & Configuration** <!-- id: 0 -->
+  - [ ] Verify/Install dependencies (Astro, Tailwind, React) <!-- id: 1 -->
+  - [ ] Configure Tailwind CSS (Theme, Colors, Fonts) <!-- id: 2 -->
+  - [ ] Setup folder structure (components, layouts, pages, content) <!-- id: 3 -->
+- [ ] **Architecture Design** <!-- id: 4 -->
+  - [ ] Define Content Collections schemas (Artists, Releases) <!-- id: 5 -->
+  - [ ] Design URL structure <!-- id: 6 -->
+- [ ] **Data Management** <!-- id: 7 -->
+  - [ ] Create mock data for Artists <!-- id: 8 -->
+  - [ ] Create mock data for Releases <!-- id: 9 -->
+- [ ] **UI/UX Implementation** <!-- id: 10 -->
+  - [ ] Create Main Layout (Header, Footer, Navigation) <!-- id: 11 -->
+  - [ ] Implement Landing Page (Psychedelic Hero, Featured Releases) <!-- id: 12 -->
+  - [ ] Implement Artists List Page <!-- id: 13 -->
+  - [ ] Implement Artist Detail Page (Dynamic) <!-- id: 14 -->
+  - [ ] Implement Releases List Page <!-- id: 15 -->
+  - [ ] Implement Release Detail Page (Dynamic) <!-- id: 16 -->
+  - [ ] Implement Contact Section/Page <!-- id: 17 -->
+- [ ] **Polishing** <!-- id: 18 -->
+  - [ ] Add micro-interactions and animations <!-- id: 19 -->
+  - [ ] Responsive design verification <!-- id: 20 -->
+  - [ ] SEO Optimization <!-- id: 21 -->

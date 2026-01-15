@@ -1,0 +1,31 @@
+---
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Artists", href: "/artists" },
+  { name: "Releases", href: "/releases" },
+  { name: "Contact", href: "/contact" },
+];
+---
+
+<header class="fixed top-0 left-0 w-full z-50 glass">
+  <nav class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+    <a href="/" class="text-2xl font-display font-bold text-neon-cyan tracking-tighter">
+      YTNK<span class="text-white">RECORDS</span>
+    </a>
+    
+    <ul class="flex gap-8">
+      {navItems.map(item => (
+        <li>
+          <a 
+            href={item.href} 
+            class="text-sm uppercase tracking-widest hover:text-neon-purple transition-colors duration-300"
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<div class="h-20"></div> <!-- Spacer for fixed header -->

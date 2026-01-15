@@ -35,7 +35,7 @@ pnpm astro -- --help
 
 ### Formatting (Biome)
 
-- **Indentation:** Tabs (not spaces)
+- **Indentation:** Spaces (2)
 - **Quotes:** Double quotes (`"`) for JavaScript/TypeScript
 - **Line endings:** LF (Unix-style)
 - **Files:** Use `.js`, `.ts`, `.tsx`, `.jsx`, `.astro` extensions appropriately

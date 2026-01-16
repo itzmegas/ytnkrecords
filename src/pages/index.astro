@@ -1,75 +1,174 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import ReleaseCard from "../components/ReleaseCard.astro";
 import Layout from "../layouts/Layout.astro";
 
 const latestReleases = await getCollection("releases");
-// Sort by date descending
 latestReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featuredReleases = latestReleases.slice(0, 6);
+
+const artists = await getCollection("artists");
+const spotlightArtist = artists[0]; // Just pick the first one for now
 ---
 
-<Layout title="Ytnk Records | Psychedelic Trance Label">
-  <section
-    class="relative h-[80vh] flex items-center justify-center overflow-hidden"
-  >
-    <!-- Animated Background Placeholder -->
-    <div class="absolute inset-0 z-0 opacity-20">
+<Layout title="Ytnk Records | Transcending Reality">
+  <main class="pt-10 pb-32">
+    <!-- Hero Section -->
+    <section class="relative px-6 py-12 lg:py-24 max-w-7xl mx-auto overflow-hidden">
+      <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="flex flex-col gap-8">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/5 text-primary text-[10px] uppercase font-bold tracking-[0.2em] w-fit"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+              ></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+              ></span>
+            </span>
+            New Dimension Unlocked
+          </div>
+          <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tighter">
+            TRANSCENDING <span class="text-primary italic">REALITY</span>
+          </h1>
+          <p class="text-lg text-slate-400 max-w-md font-sans">
+            Experience the next evolution of high-fidelity frequencies. A sonic
+            sanctuary for the modern voyager and the digital shaman.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              class="bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform glow-border"
+            >
+              Listen Now
+            </button>
+            <a
+              href="/releases"
+              class="bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all text-center"
+            >
+              View Catalog
+            </a>
+          </div>
+        </div>
+        <div class="relative aspect-square flex items-center justify-center">
+          <!-- Abstract Visual Ornament -->
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 rounded-full blur-[100px] animate-pulse"
+          >
+          </div>
+          <div
+            class="relative w-full aspect-square bg-cover bg-center rounded-2xl border border-white/10 overflow-hidden group shadow-2xl"
+          >
+            {
+              featuredReleases[0] && (
+                <Image
+                  src={featuredReleases[0].data.cover}
+                  alt="Featured Release"
+                  width={800}
+                  height={800}
+                  class="w-full h-full object-cover"
+                />
+              )
+            }
+            <div class="absolute inset-0 bg-primary/10 mix-blend-color-dodge"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating Decorative Text -->
       <div
-        class="absolute inset-0 bg-linear-to-br from-neon-purple via-dark to-neon-cyan"
+        class="absolute -bottom-10 left-0 text-[180px] font-black opacity-[0.03] whitespace-nowrap pointer-events-none select-none tracking-tighter"
       >
+        PSYCHEDELIC SOUNDSCAPES
       </div>
-    </div>
+    </section>
 
-    <div class="relative z-10 text-center px-4">
-      <h1
-        class="text-6xl md:text-8xl font-display font-black tracking-tighter mb-4 neon-glow-purple italic"
-      >
-        BEYOND<br /><span class="text-neon-cyan">VIBRATIONS</span>
-      </h1>
-      <p
-        class="text-xl md:text-2xl font-sans text-gray-400 max-w-2xl mx-auto uppercase tracking-[0.2em]"
-      >
-        Deep Psychedelic Trance from the Void
-      </p>
-
-      <div class="mt-12 flex flex-wrap justify-center gap-6">
+    <!-- Featured Releases Section -->
+    <section class="max-w-7xl mx-auto px-6 mt-20">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <div class="w-12 h-1 bg-primary mb-4"></div>
+          <h2 class="text-4xl font-bold tracking-tight uppercase">
+            Featured Releases
+          </h2>
+        </div>
         <a
-          href="/releases"
-          class="px-8 py-3 bg-neon-purple font-bold uppercase tracking-widest hover:scale-105 transition-all duration-300"
+          class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-8"
+          href="/releases">Explore All</a
         >
-          Latest Releases
-        </a>
-        <a
-          href="/artists"
-          class="px-8 py-3 border border-neon-cyan text-neon-cyan font-bold uppercase tracking-widest hover:bg-neon-cyan hover:text-dark transition-all duration-300"
-        >
-          Our Artists
-        </a>
       </div>
-    </div>
-  </section>
-
-  <section class="max-w-7xl mx-auto px-4 py-24">
-    <div class="flex justify-between items-end mb-12">
-      <div>
-        <h2 class="text-4xl font-display font-bold">
-          LATEST <span class="text-neon-purple">RELEASES</span>
-        </h2>
-        <p class="text-gray-500 mt-2">Discover our newest sonic frequencies</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {featuredReleases.map((release) => <ReleaseCard release={release} />)}
       </div>
-      <a
-        href="/releases"
-        class="text-neon-cyan text-sm uppercase tracking-widest hover:underline"
-        >View all</a
-      >
-    </div>
+    </section>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {
-        latestReleases
-          .slice(0, 4)
-          .map((release) => <ReleaseCard release={release} />)
-      }
-    </div>
-  </section>
+    <!-- Artist Spotlight Section (Overlap Design) -->
+    {
+      spotlightArtist && (
+        <section class="max-w-7xl mx-auto px-6 mt-32 relative">
+          <div class="bg-primary/5 rounded-3xl p-8 lg:p-16 border border-primary/10 overflow-hidden flex flex-col lg:flex-row items-center gap-12">
+            <div class="relative w-full lg:w-1/2 aspect-square rounded-2xl overflow-hidden border border-primary/20 group">
+              <Image
+                src={spotlightArtist.data.image}
+                alt={spotlightArtist.data.name}
+                width={800}
+                height={800}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent mix-blend-overlay" />
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-background-dark/40 backdrop-blur-sm">
+                <a
+                  href={`/artists/${spotlightArtist.slug}`}
+                  class="bg-white text-background-dark px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm">
+                    open_in_new
+                  </span>{" "}
+                  View Profile
+                </a>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex flex-col gap-6">
+              <div class="text-primary font-bold tracking-[0.3em] uppercase text-xs">
+                Artist of the Month
+              </div>
+              <h2 class="text-5xl lg:text-7xl font-black tracking-tighter uppercase italic">
+                {spotlightArtist.data.name.split(" ")[0]}{" "}
+                <span
+                  class="text-transparent"
+                  style="-webkit-text-stroke: 1px white;"
+                >
+                  {spotlightArtist.data.name.split(" ").slice(1).join(" ")}
+                </span>
+              </h2>
+              <p class="text-slate-400 font-sans text-lg leading-relaxed line-clamp-4">
+                {spotlightArtist.data.bio}
+              </p>
+              <div class="flex gap-4 items-center">
+                <a
+                  href={`/artists/${spotlightArtist.slug}`}
+                  class="bg-primary/20 border border-primary/40 text-primary px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
+                >
+                  Latest Tracks
+                </a>
+                <div class="flex gap-4">
+                  <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">share</span>
+                  </button>
+                  <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">rss_feed</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
 </Layout>

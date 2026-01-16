@@ -1,26 +1,102 @@
 ---
-import Logo from "./Logo.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 
-const year = new Date().getFullYear();
+const latestReleases = await getCollection("releases");
+latestReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const currentTrack = latestReleases[0];
+const artist = currentTrack
+  ? await getEntry(currentTrack.data.artist)
+  : null;
 ---
 
-<footer class="bg-dark/80 border-t border-white/10 py-12 mt-20">
-  <div
-    class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
-  >
-    <div class="text-center md:text-left">
-      <Logo size="md" showRecords={true} />
-      <p class="text-gray-500 text-sm mt-2">Psychedelic Trance Label</p>
+<footer class="fixed bottom-0 w-full glass-player z-50 h-24 px-6 flex items-center">
+  <div class="max-w-7xl mx-auto w-full grid grid-cols-3 items-center">
+    <!-- Currently Playing -->
+    <div class="flex items-center gap-4">
+      {
+        currentTrack && (
+          <>
+            <div class="size-14 rounded-lg overflow-hidden border border-white/10 hidden sm:block">
+              <Image
+                src={currentTrack.data.cover}
+                alt={currentTrack.data.title}
+                width={100}
+                height={100}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h4 class="text-sm font-bold truncate max-w-[120px] sm:max-w-none">
+                {currentTrack.data.title}
+              </h4>
+              <p class="text-[10px] text-slate-500 uppercase tracking-widest">
+                {artist?.data.name}
+              </p>
+            </div>
+          </>
+        )
+      }
+      <button class="ml-2 p-1 hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-[18px]">favorite</span>
+      </button>
     </div>
 
-    <div class="flex gap-6 text-gray-400">
-      <a href="#" class="hover:text-neon-cyan transition-colors">Instagram</a>
-      <a href="#" class="hover:text-neon-cyan transition-colors">SoundCloud</a>
-      <a href="#" class="hover:text-neon-cyan transition-colors">Spotify</a>
+    <!-- Player Controls -->
+    <div class="flex flex-col items-center gap-2">
+      <div class="flex items-center gap-6">
+        <button class="text-slate-500 hover:text-white transition-colors">
+          <span class="material-symbols-outlined">shuffle</span>
+        </button>
+        <button class="text-slate-300 hover:text-white transition-colors">
+          <span class="material-symbols-outlined">skip_previous</span>
+        </button>
+        <button
+          class="size-10 bg-white text-background-dark rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+        >
+          <span class="material-symbols-outlined font-bold">play_arrow</span>
+        </button>
+        <button class="text-slate-300 hover:text-white transition-colors">
+          <span class="material-symbols-outlined">skip_next</span>
+        </button>
+        <button class="text-slate-500 hover:text-white transition-colors">
+          <span class="material-symbols-outlined">repeat</span>
+        </button>
+      </div>
+      <div class="w-full flex items-center gap-3">
+        <span class="text-[10px] text-slate-500 font-mono">0:00</span>
+        <div
+          class="flex-1 h-1 bg-white/10 rounded-full relative overflow-hidden group cursor-pointer"
+        >
+          <div
+            class="absolute inset-y-0 left-0 w-0 bg-primary group-hover:bg-secondary transition-colors"
+          >
+          </div>
+          <div
+            class="absolute top-1/2 left-0 -translate-y-1/2 size-2 bg-white rounded-full opacity-0 group-hover:opacity-100"
+          >
+          </div>
+        </div>
+        <span class="text-[10px] text-slate-500 font-mono">0:00</span>
+      </div>
     </div>
 
-    <div class="text-gray-500 text-xs">
-      &copy; {year} YTNK Records. All rights reserved.
+    <!-- Volume/Action -->
+    <div class="flex items-center justify-end gap-6">
+      <div class="hidden lg:flex items-center gap-3">
+        <span class="material-symbols-outlined text-slate-400 text-[18px]"
+          >volume_up</span
+        >
+        <div class="w-24 h-1 bg-white/10 rounded-full">
+          <div class="w-2/3 h-full bg-slate-400"></div>
+        </div>
+      </div>
+      <button
+        class="flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-lg text-primary text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
+      >
+        <span class="material-symbols-outlined text-[14px]">local_mall</span> Buy
+      </button>
     </div>
   </div>
 </footer>

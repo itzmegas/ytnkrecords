@@ -4,26 +4,47 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
   artist: CollectionEntry<"artists">;
+  className?: string;
 }
 
-const { artist } = Astro.props;
+const { artist, className } = Astro.props;
 ---
 
-<a 
+<a
   href={`/artists/${artist.slug}`}
-  class="glass overflow-hidden group hover:neon-border-purple transition-all duration-500 block"
+  class:list={[
+    "group relative overflow-hidden rounded-xl border border-white/10 bg-charcoal duotone-card glow-border aspect-[4/5] block",
+    className,
+  ]}
 >
-  <div class="aspect-[3/4] overflow-hidden relative">
-    <Image 
-      src={artist.data.image} 
-      alt={artist.data.name}
-      width={400}
-      height={533}
-      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-    />
-    <div class="absolute inset-0 bg-linear-to-t from-dark via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-    <div class="absolute bottom-4 left-4">
-       <h3 class="text-2xl font-display font-bold leading-tight group-hover:text-neon-cyan transition-colors">{artist.data.name}</h3>
+  <Image
+    src={artist.data.image}
+    alt={artist.data.name}
+    width={600}
+    height={750}
+    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+  />
+  <div class="scanline"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 z-20"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 p-6 z-30 w-full transition-transform duration-300 group-hover:-translate-y-2"
+  >
+    <div class="flex items-center gap-2 mb-2">
+      <span
+        class="px-2 py-0.5 bg-primary text-[10px] font-bold tracking-tighter rounded uppercase"
+        >Artist</span
+      >
     </div>
+    <h2
+      class="text-3xl font-black uppercase tracking-tighter group-hover:text-primary transition-colors"
+    >
+      {artist.data.name}
+    </h2>
+    <p class="text-white/40 text-xs font-medium uppercase mt-1 tracking-widest">
+      {artist.data.socials.instagram ? "Active" : "Underground"}
+    </p>
   </div>
 </a>

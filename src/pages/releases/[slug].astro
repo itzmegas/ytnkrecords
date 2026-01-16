@@ -13,77 +13,152 @@ export async function getStaticPaths() {
 
 const { release } = Astro.props;
 const artist = await getEntry(release.data.artist);
+
+// Get more from this artist
+const allReleases = await getCollection("releases");
+const moreFromArtist = allReleases
+  .filter((r) => r.data.artist.slug === artist.slug && r.slug !== release.slug)
+  .slice(0, 4);
 ---
 
 <Layout title={`${release.data.title} - ${artist.data.name} | Ytnk Records`}>
-  <div class="pt-32 pb-24 max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-      <!-- Cover -->
-      <div class="relative group">
-        <div class="absolute -inset-1 bg-linear-to-r from-neon-purple to-neon-cyan opacity-30 blur-xl group-hover:opacity-50 transition-opacity"></div>
-        <div class="relative glass aspect-square overflow-hidden">
-          <Image
-            src={release.data.cover}
-            alt={release.data.title}
-            width={800}
-            height={800}
-            class="w-full h-full object-cover"
-          />
+  <!-- Pulsing Background Elements -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="pulse-layer absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary/20 blur-[120px]"></div>
+    <div class="pulse-layer absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-neon-cyan/10 blur-[120px]" style="animation-delay: 0.206s;"></div>
+  </div>
+
+  <main class="relative z-10 container mx-auto px-6 py-12 lg:py-20">
+    <div class="grid grid-cols-12 gap-8 lg:gap-16 items-start">
+      <!-- Left Column: Artwork -->
+      <div class="col-span-12 lg:col-span-5 sticky top-24">
+        <div class="relative group">
+          <!-- Glow Aura -->
+          <div class="absolute inset-0 bg-primary/30 blur-3xl rounded-xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+          <div class="relative aspect-square overflow-hidden rounded-xl border border-white/10 shadow-2xl">
+            <Image
+              src={release.data.cover}
+              alt={release.data.title}
+              width={800}
+              height={800}
+              class="w-full h-full object-cover"
+            />
+            <!-- Floating Play Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm">
+              <button class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
+                <span class="material-symbols-outlined text-4xl">play_arrow</span>
+              </button>
+            </div>
+          </div>
+          <!-- Technical Meta Strip -->
+          <div class="mt-8 grid grid-cols-3 gap-4 font-body text-[10px] tracking-[0.2em] uppercase text-white/40">
+            <div class="border-l border-primary/40 pl-3">
+              <p class="mb-1 text-primary/60">Released</p>
+              <p class="text-white/80">{release.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase()}</p>
+            </div>
+            <div class="border-l border-primary/40 pl-3">
+              <p class="mb-1 text-primary/60">Catalog</p>
+              <p class="text-white/80">YTNK-{Math.floor(Math.random() * 1000).toString().padStart(3, '0')}</p>
+            </div>
+            <div class="border-l border-primary/40 pl-3">
+              <p class="mb-1 text-primary/60">Format</p>
+              <p class="text-white/80">Digital / WAV</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Info -->
-      <div>
-        <p class="text-neon-cyan uppercase tracking-[0.3em] font-bold mb-2">
-          {release.data.type} • {release.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </p>
-        <h1 class="text-5xl md:text-7xl font-display font-black tracking-tighter text-white uppercase italic leading-none mb-4">
-          {release.data.title}
-        </h1>
-        <a 
-          href={`/artists/${artist.slug}`}
-          class="text-3xl font-display font-bold text-neon-purple hover:text-neon-cyan transition-colors uppercase tracking-widest block mb-12"
-        >
-          {artist.data.name}
-        </a>
+      <!-- Right Column: Info & Tracks -->
+      <div class="col-span-12 lg:col-span-7 space-y-10">
+        <!-- Release Header -->
+        <header>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="px-2 py-0.5 bg-primary/20 text-primary text-[10px] font-bold tracking-widest uppercase rounded">New Release</span>
+            <span class="text-white/30 text-[10px] tracking-widest uppercase">• Psytrance</span>
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-bold tracking-tight uppercase mb-2 leading-none">
+            {release.data.title.split(' ')[0]} <span class="text-primary">{release.data.title.split(' ').slice(1).join(' ')}</span>
+          </h1>
+          <a href={`/artists/${artist.slug}`} class="text-2xl lg:text-3xl font-light tracking-[0.3em] uppercase opacity-80 hover:text-primary transition-colors block">
+            {artist.data.name}
+          </a>
+          <p class="mt-6 text-lg font-body text-white/60 leading-relaxed max-w-xl">
+            A transcendental journey through the synaptic pathways of consciousness. This {release.data.type.toLowerCase()} blends driving basslines with glitch-infused soundscapes and ethereal vibrations.
+          </p>
+        </header>
 
-        <div class="space-y-8">
-          <h2 class="text-xl font-display font-bold text-white uppercase tracking-widest border-b border-white/10 pb-4">Listen & Buy</h2>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Tracklist (Placeholder for now) -->
+        <section class="space-y-2">
+          <div class="flex items-center px-4 py-2 text-[10px] uppercase tracking-widest text-white/30 border-b border-white/5">
+            <div class="w-8">#</div>
+            <div class="flex-1">Title</div>
+            <div class="w-20 text-right">BPM</div>
+            <div class="w-24 text-right">Time</div>
+          </div>
+          <div class="group flex items-center px-4 py-4 neo-glass rounded-lg border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+            <div class="w-8 font-body text-white/30 group-hover:text-primary transition-colors">01</div>
+            <div class="flex-1 font-medium tracking-wide">{release.data.title} (Original Mix)</div>
+            <div class="w-20 text-right font-body text-xs text-white/50 transition-colors">145</div>
+            <div class="w-24 text-right font-body text-xs text-white/50">07:42</div>
+          </div>
+        </section>
+
+        <!-- Platform CTAs -->
+        <div class="pt-6">
+          <h3 class="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-6">Listen & Purchase</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {release.data.links.spotify && (
+              <a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all text-center" href={release.data.links.spotify}>
+                <span class="material-symbols-outlined text-3xl mb-2 text-white/40 group-hover:text-[#1DB954] transition-colors">album</span>
+                <span class="text-[10px] uppercase tracking-widest font-bold">Spotify</span>
+              </a>
+            )}
             {release.data.links.beatport && (
-              <a href={release.data.links.beatport} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
-                <span class="font-bold uppercase tracking-widest">Beatport</span>
-                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              <a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all text-center" href={release.data.links.beatport}>
+                <span class="material-symbols-outlined text-3xl mb-2 text-white/40 group-hover:text-neon-cyan transition-colors">shopping_cart</span>
+                <span class="text-[10px] uppercase tracking-widest font-bold">Beatport</span>
               </a>
             )}
             {release.data.links.bandcamp && (
-              <a href={release.data.links.bandcamp} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
-                <span class="font-bold uppercase tracking-widest">Bandcamp</span>
-                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              <a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all text-center" href={release.data.links.bandcamp}>
+                <span class="material-symbols-outlined text-3xl mb-2 text-white/40 group-hover:text-primary transition-colors">download</span>
+                <span class="text-[10px] uppercase tracking-widest font-bold">Bandcamp</span>
               </a>
             )}
-            {release.data.links.spotify && (
-              <a href={release.data.links.spotify} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
-                <span class="font-bold uppercase tracking-widest">Spotify</span>
-                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-            )}
-            {release.data.links.youtube && (
-              <a href={release.data.links.youtube} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
-                <span class="font-bold uppercase tracking-widest">YouTube</span>
-                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-            )}
+            <button class="group flex flex-col items-center justify-center py-6 px-4 bg-primary text-white rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+              <span class="material-symbols-outlined text-3xl mb-2">shopping_bag</span>
+              <span class="text-[10px] uppercase tracking-widest font-bold">Buy Now</span>
+            </button>
           </div>
-        </div>
-
-        <div class="mt-16 p-6 glass border-l-4 border-l-neon-cyan">
-          <p class="text-gray-400 italic">
-            "Entering the {release.data.title} dimension. A {release.data.type.toLowerCase()} crafted by {artist.data.name} to dissolve the boundaries of reality."
-          </p>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- More from Artist -->
+    {moreFromArtist.length > 0 && (
+      <section class="mt-32">
+        <div class="flex items-center justify-between mb-12">
+          <h4 class="text-2xl font-bold uppercase tracking-tight">More from <span class="text-primary">{artist.data.name}</span></h4>
+          <a class="text-xs uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors" href={`/artists/${artist.slug}`}>View Artist Profile</a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {moreFromArtist.map((r) => (
+            <a href={`/releases/${r.slug}`} class="group cursor-pointer">
+              <div class="aspect-square rounded-lg overflow-hidden mb-4 border border-white/5">
+                <Image
+                  src={r.data.cover}
+                  alt={r.data.title}
+                  width={400}
+                  height={400}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <p class="text-sm font-bold uppercase tracking-wide group-hover:text-primary transition-colors">{r.data.title}</p>
+              <p class="text-[10px] uppercase tracking-widest text-white/40">{r.data.type} • {r.data.date.getFullYear()}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
 </Layout>

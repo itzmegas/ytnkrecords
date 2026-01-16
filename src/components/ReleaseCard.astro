@@ -1,28 +1,41 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
 
 interface Props {
   release: CollectionEntry<"releases">;
 }
 
 const { release } = Astro.props;
+const artist = await getEntry(release.data.artist);
 ---
 
-<div class="glass overflow-hidden group hover:neon-border-purple transition-all duration-500">
-  <div class="aspect-square overflow-hidden">
-    <Image 
-      src={release.data.cover} 
+<a href={`/releases/${release.slug}`} class="group cursor-pointer">
+  <div
+    class="aspect-square rounded-xl overflow-hidden border border-white/5 relative mb-4 transition-all duration-500 group-hover:border-primary/50 group-hover:-translate-y-2"
+  >
+    <Image
+      src={release.data.cover}
       alt={release.data.title}
       width={400}
       height={400}
-      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
     />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+    >
+      <div class="absolute bottom-4 left-4">
+        <span class="material-symbols-outlined text-white">play_circle</span>
+      </div>
+    </div>
   </div>
-  
-  <div class="p-4">
-    <p class="text-xs text-neon-cyan uppercase tracking-tighter mb-1">{release.data.type}</p>
-    <h3 class="text-lg font-display font-bold leading-tight">{release.data.title}</h3>
-    <p class="text-gray-400 text-sm mt-1">{release.data.date.getFullYear()}</p>
-  </div>
-</div>
+  <h3
+    class="font-bold text-sm tracking-wide group-hover:text-primary transition-colors"
+  >
+    {release.data.title}
+  </h3>
+  <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">
+    {artist?.data.name}
+  </p>
+</a>

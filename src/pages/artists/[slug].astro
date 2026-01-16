@@ -1,8 +1,8 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import ReleaseCard from "../../components/ReleaseCard.astro";
 import { Image } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
+import ReleaseCard from "../../components/ReleaseCard.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const artists = await getCollection("artists");
@@ -17,7 +17,7 @@ const { artist } = Astro.props;
 // Get releases for this artist
 const allReleases = await getCollection("releases");
 const artistReleases = allReleases.filter(
-  (release) => release.data.artist.slug === artist.slug
+  (release) => release.data.artist.slug === artist.slug,
 );
 
 // Sort by date descending

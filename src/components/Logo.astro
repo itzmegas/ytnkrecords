@@ -1,11 +1,19 @@
 ---
+import LogoSVG from "./LogoSVG.astro";
+
 interface Props {
   class?: string;
   size?: "sm" | "md" | "lg" | "xl" | "2xl";
   showRecords?: boolean;
+  format?: "html" | "svg";
 }
 
-const { class: className, size = "md", showRecords = false } = Astro.props;
+const {
+  class: className,
+  size = "md",
+  showRecords = false,
+  format = "html",
+} = Astro.props;
 
 const sizeClasses = {
   sm: "text-xl",
@@ -14,18 +22,40 @@ const sizeClasses = {
   xl: "text-7xl",
   "2xl": "text-9xl",
 };
+
+const svgSizeDimensions = {
+  sm: 24,
+  md: 32,
+  lg: 48,
+  xl: 72,
+  "2xl": 128,
+};
 ---
 
-<div class:list={["inline-flex items-baseline font-black uppercase select-none", sizeClasses[size], className]} style="font-family: 'Anton', sans-serif; letter-spacing: -0.02em;">
-  <span class="text-[#D6438D]">Y</span><span class="text-white">tnk</span>
-  {showRecords && <span class="text-white ml-2 font-sans font-bold tracking-tight opacity-90" style="font-family: var(--font-display);">RECORDS</span>}
-</div>
+{
+  format === "svg" ? (
+    <LogoSVG class={className} height={svgSizeDimensions[size]} />
+  ) : (
+    <div
+      class:list={[
+        "inline-flex items-baseline font-black uppercase select-none",
+        sizeClasses[size],
+        className,
+      ]}
+      style="font-family: 'Anton', sans-serif; "
+    >
+      <span class="text-[#D6438D]">Y</span>
+      <span class="text-white">tnk</span>
+    </div>
+  )
+}
 
 <style>
   /* Optional: Add a slight "print" feel if desired */
   div {
     line-height: 1;
     display: inline-flex;
+    letter-spacing: 0.08em;
     align-items: baseline;
   }
 </style>

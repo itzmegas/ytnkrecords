@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artist Profile | Ytnk Records</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cf20ee",
+                        "background-light": "#f1f1f4",
+                        "background-dark": "#16161d",
+                        "electric-cyan": "#00f3ff",
+                        "surface-dark": "#24242B"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .neon-border {
+            box-shadow: 0 0 10px rgba(207, 32, 238, 0.3);
+            border: 1px solid rgba(207, 32, 238, 0.5);
+        }
+        .cyan-glow {
+            box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.1), 0 0 10px rgba(0, 243, 255, 0.1);
+        }
+        .glitch-overlay {
+            background: linear-gradient(180deg, rgba(22, 22, 29, 0) 0%, rgba(22, 22, 29, 1) 95%);
+        }
+        .pulse-btn:hover {
+            box-shadow: 0 0 20px rgba(207, 32, 238, 0.6);
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+        body {
+            scrollbar-width: thin;
+            scrollbar-color: #cf20ee #16161d;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-white selection:bg-primary/40">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex h-20 items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="font-display text-xl font-bold tracking-tighter uppercase">Ytnk</h1>
+</div>
+<div class="hidden md:flex items-center gap-8 font-display text-sm tracking-widest uppercase">
+<a class="hover:text-primary transition-colors" href="#">Artists</a>
+<a class="hover:text-primary transition-colors" href="#">Releases</a>
+<a class="hover:text-primary transition-colors" href="#">Events</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg">search</span>
+<input class="bg-surface-dark/50 border-none rounded-full py-2 pl-10 pr-4 text-xs font-display focus:ring-1 focus:ring-primary w-48" placeholder="FIND FREQUENCY" type="text"/>
+</div>
+<button class="bg-primary px-6 py-2.5 rounded-full font-display text-xs font-bold uppercase tracking-widest pulse-btn">
+                    Booking
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<div class="relative h-[80vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-fixed bg-center" data-alt="Psytrance artist performing at a festival with laser lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDN7-AqngcDhmIj6V2YUNfzCXMBg6FbpFNk16xjkFFVhRLQ9gR-qfal4lgbLlK9xqAGX-Uzi7JW2GOWg0r58cXl2yfVyMjF5A0nKXINAo-vmFpmHT42XTzLL2PQ4OCVijHKWWgPJ1gbPlSKBLsTalKa0TH3WAg3m6Jv-pIKRKBGhbpGBv9jAuTCTpwYQq5CJq8lfeW9W-bA0ny9C6gcDtPE9AYG0ok-lrdT4HWqVOnyog3eR4WguL280bT-ChRcBXm2m5UjctYEW_-t');">
+</div>
+<div class="absolute inset-0 glitch-overlay"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 lg:p-24 flex flex-col items-start gap-4">
+<span class="bg-primary/20 backdrop-blur-md px-4 py-1 rounded-full text-primary border border-primary/30 font-display text-xs font-bold tracking-[0.2em] uppercase">
+                Featured Artist
+            </span>
+<h2 class="font-display text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none italic">
+                SYNTH<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-electric-cyan">OBSCURE</span>
+</h2>
+</div>
+</div>
+<!-- Artist Content Grid -->
+<main class="max-w-7xl mx-auto px-6 lg:px-12 -mt-20 relative z-10 pb-24">
+<div class="grid grid-cols-12 gap-8">
+<!-- Bio Card -->
+<div class="col-span-12 lg:col-span-8 bg-surface-dark/80 backdrop-blur-xl rounded-xl p-8 lg:p-12 border border-white/5 cyan-glow">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="size-48 shrink-0 rounded-lg overflow-hidden border-2 border-primary/30">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Close up portrait of the music producer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJe_SSMyYJ-Au8VuyHwKD0AMZ727L_YDBjDa0aTaYTFmLSwW27R4TuR4P-lIHtdy9f_nBrK02AuBSysgX6M6rSSm_n20GiM63F0MVZe40dPkkLEltphbeVS5icgnzmJlSoe3tQmVYVHGn0fBcnlvcfg-epN7RHA4VKe-p8nSUWyQlZEZW0eJrE8-Ns3ViR3yvAwko8USb9YKhkCdslsT8tiZc59y0tskUYd3C0tGBqJUMjj5hW-0x1g_axGmBal0hOLamHH6OAIQ81"/>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-display text-3xl font-bold mb-2 uppercase tracking-tight">Artist Bio</h3>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<p class="text-gray-400 text-sm font-display uppercase tracking-wider">Helsinki, Finland / The Void</p>
+</div>
+</div>
+<div class="flex gap-3">
+<a class="size-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+</div>
+</div>
+<p class="text-gray-300 leading-relaxed font-light text-lg">
+                            Synth Obscure is the sonic manifestation of Elias Korhonen, a visionary architect of twilight frequencies. Emerging from the deep forests of the north, his sound bridges the gap between mechanical precision and organic chaos. With textures that ripple like liquid mercury and rhythms that command the cellular level, Elias has become a staple of the Ytnk Records roster.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<button class="flex items-center gap-2 bg-primary px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest pulse-btn">
+<span class="material-symbols-outlined">event_seat</span>
+                                Secure Booking
+                            </button>
+<button class="flex items-center gap-2 border border-white/20 hover:border-white/40 px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest transition-all">
+<span class="material-symbols-outlined">download</span>
+                                EPK
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Column -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5">
+<h4 class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Technical Specs</h4>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-electric-cyan">speed</span>
+<span class="text-sm font-display uppercase">BPM Range</span>
+</div>
+<span class="text-xl font-bold font-display">146 — 152</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-electric-cyan">waves</span>
+<span class="text-sm font-display uppercase">Style</span>
+</div>
+<span class="text-xl font-bold font-display">Dark / Forest</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-electric-cyan">album</span>
+<span class="text-sm font-display uppercase">Releases</span>
+</div>
+<span class="text-xl font-bold font-display">32 Total</span>
+</div>
+</div>
+</div>
+<!-- Social Connect -->
+<div class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5 flex flex-col gap-4">
+<h4 class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest">Connect</h4>
+<div class="grid grid-cols-2 gap-3">
+<a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href="#">
+<div class="size-2 bg-[#1DB954] rounded-full"></div>
+<span class="text-xs font-display font-bold">SPOTIFY</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href="#">
+<div class="size-2 bg-[#ff5500] rounded-full"></div>
+<span class="text-xs font-display font-bold">SOUNDCLOUD</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href="#">
+<div class="size-2 bg-[#1da1f2] rounded-full"></div>
+<span class="text-xs font-display font-bold">TWITTER</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href="#">
+<div class="size-2 bg-primary rounded-full"></div>
+<span class="text-xs font-display font-bold">BANDCAMP</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Releases Header -->
+<div class="col-span-12 mt-12 flex items-end justify-between border-b border-white/10 pb-4">
+<div>
+<h2 class="font-display text-4xl font-bold uppercase tracking-tight">Discography</h2>
+<p class="text-gray-500 text-sm uppercase tracking-widest mt-1">Latest frequencies from the lab</p>
+</div>
+<button class="text-primary font-display text-sm font-bold uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all">
+                    View All <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Releases Grid -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Release Item 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Abstract psychedelic album cover with neon lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFqjTFjQHEt5m7cRmW34L-fL6gLcwHhmPBE7ikY0Q2BGu3NpQxi85T_iX19w4yM4hc9LWz2id1GSK6HJZoV6az9sY7t8_o7TA0P3iiFMJWnVeW8Cg5FQo3miABQk0M0n8bUAdOrV1kYlcj5haee2apKcGpSI6Jkyh4pkoKzLVIt_YplEPDDbS9jRGRJ4urNQdBDJDrhAkcbV1gjq1nmR_-W74fhF7blDIKAR8flaEwVDGSg51Q2I890M1v2PGH-LmhNVzebLgzDbpP"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+<div class="absolute top-4 right-4 bg-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest">New</div>
+</div>
+<h5 class="font-display font-bold text-lg leading-tight group-hover:text-primary transition-colors">NEURAL ARCHITECTURE</h5>
+<p class="text-gray-500 text-sm font-display uppercase">Album • 2024</p>
+</div>
+<!-- Release Item 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Dark abstract wallpaper with purple and blue waves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQOZDdNN9JSrmRRejmevxw7_1KE1Nk1queIBCofoK-ZZO_5fawxEDzqbw5qjL1KkJ_PkN-qUi9dbNkNkRpYO8m5EjX0wHWb-QHnjZ90rTwB2F0IZa0UBXZ6usWZCqAgo4VzqrHAjr6KVY6nFAse_8-xQpjBPGsec6T2C5B-L8lLIaewQobfG1JrWlwIZcs4sH1UzpW_Bjt_l0m-q0TkVObL6yNbyM4BxkzGzkfh_aCfvgNplKYQqDMtF-O_7foRDBhajFDtflIzZ4W"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+</div>
+<h5 class="font-display font-bold text-lg leading-tight group-hover:text-primary transition-colors">VOID WHISPERS</h5>
+<p class="text-gray-500 text-sm font-display uppercase">EP • 2023</p>
+</div>
+<!-- Release Item 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Microscopic texture resembling psychedelic patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfAM5RJPqK8zUpp4nUsKmDF4Ua2j9-VWqmcb_Od-hqEoThWOPthepVQ8XkvXsn3zhZmjEmQSoLDw13ivPde7WOkjQh8YU6yhN7gArNpF2mygvHp7ZsIq06r-bBnXk-LgR-7jcxdcQGmtn7i1gh9ZTRKcB6CAWwuTIFQ9KbcpXhkhxuAzquSSOa-D53hObouHKJqaPDOLfcfbP3_VwOVymofcZrXb9J80u5mOReNHT9BylJ8AACPtzSCcGwFMhrA-MhfjECy5vE30rk"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+</div>
+<h5 class="font-display font-bold text-lg leading-tight group-hover:text-primary transition-colors">FRACTAL HORIZON</h5>
+<p class="text-gray-500 text-sm font-display uppercase">Single • 2023</p>
+</div>
+<!-- Release Item 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Deep space galaxy nebula with purple hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7CxHoCNac7jt-maz8B3TbTnBBt2rZ-By7Ads5M0lFhmDQ5ohaNdb6004gSqz8EPZHK4sZ3_t5owfmfNQLd3uHwg-uVam1zwUPYXITzl-2NgJ_y5faAiWFTOhshR5pT_pOCf5atEgZZpZWLPYxliBdpOl7AV3jIfOmg1n0bOtjt_5dxLymcpsYg-p7anDIAqmCZ_xAAOIU6XmcMCByCSLcQU1olZ9ckoIvE6EUyw2J6-zAWR5uJYEzI8Y2xmarFsnNX1Wue44xrSXD"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+</div>
+</div>
+<h5 class="font-display font-bold text-lg leading-tight group-hover:text-primary transition-colors">KINETIC DREAM</h5>
+<p class="text-gray-500 text-sm font-display uppercase">EP • 2022</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dark py-12 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3 opacity-50">
+<div class="size-6 text-white">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="font-display text-sm font-bold tracking-tighter uppercase">Ytnk Records</h2>
+</div>
+<div class="flex gap-8 text-[10px] font-display uppercase tracking-widest text-gray-500">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+<a class="hover:text-primary transition-colors" href="#">Demo Drop</a>
+</div>
+<p class="text-[10px] font-display uppercase tracking-widest text-gray-600">© 2024 Transmuting Reality</p>
+</div>
+</footer>
+</body></html>

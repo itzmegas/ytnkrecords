@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const releases = await getCollection("releases");
+  return releases.map((release) => ({
+    params: { slug: release.slug },
+    props: { release },
+  }));
+}
+
+const { release } = Astro.props;
+const artist = await getEntry(release.data.artist);
+---
+
+<Layout title={`${release.data.title} - ${artist.data.name} | Ytnk Records`}>
+  <div class="pt-32 pb-24 max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <!-- Cover -->
+      <div class="relative group">
+        <div class="absolute -inset-1 bg-linear-to-r from-neon-purple to-neon-cyan opacity-30 blur-xl group-hover:opacity-50 transition-opacity"></div>
+        <div class="relative glass aspect-square overflow-hidden">
+          <Image
+            src={release.data.cover}
+            alt={release.data.title}
+            width={800}
+            height={800}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <p class="text-neon-cyan uppercase tracking-[0.3em] font-bold mb-2">
+          {release.data.type} • {release.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+        <h1 class="text-5xl md:text-7xl font-display font-black tracking-tighter text-white uppercase italic leading-none mb-4">
+          {release.data.title}
+        </h1>
+        <a 
+          href={`/artists/${artist.slug}`}
+          class="text-3xl font-display font-bold text-neon-purple hover:text-neon-cyan transition-colors uppercase tracking-widest block mb-12"
+        >
+          {artist.data.name}
+        </a>
+
+        <div class="space-y-8">
+          <h2 class="text-xl font-display font-bold text-white uppercase tracking-widest border-b border-white/10 pb-4">Listen & Buy</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {release.data.links.beatport && (
+              <a href={release.data.links.beatport} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
+                <span class="font-bold uppercase tracking-widest">Beatport</span>
+                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            )}
+            {release.data.links.bandcamp && (
+              <a href={release.data.links.bandcamp} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
+                <span class="font-bold uppercase tracking-widest">Bandcamp</span>
+                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            )}
+            {release.data.links.spotify && (
+              <a href={release.data.links.spotify} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
+                <span class="font-bold uppercase tracking-widest">Spotify</span>
+                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            )}
+            {release.data.links.youtube && (
+              <a href={release.data.links.youtube} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 glass hover:neon-border-purple transition-all group">
+                <span class="font-bold uppercase tracking-widest">YouTube</span>
+                <span class="text-neon-purple group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div class="mt-16 p-6 glass border-l-4 border-l-neon-cyan">
+          <p class="text-gray-400 italic">
+            "Entering the {release.data.title} dimension. A {release.data.type.toLowerCase()} crafted by {artist.data.name} to dissolve the boundaries of reality."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

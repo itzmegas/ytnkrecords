@@ -1,0 +1,43 @@
+---
+interface Props {
+  class?: string;
+  height?: number | string;
+  width?: number | string;
+  showtnk?: boolean;
+}
+
+const {
+  class: className,
+  height = "100%",
+  width = "auto",
+  showtnk = true,
+} = Astro.props;
+---
+
+<svg
+  viewBox="0 0 120 40"
+  height={height}
+  width={width}
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+      .anton {
+        font-family: 'Anton', sans-serif;
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+    </style>
+  </defs>
+  <text
+    x="0"
+    y="32"
+    class="anton"
+    font-size="40"
+  >
+    <tspan fill="#D6438D">Y</tspan>
+    {showtnk && <tspan fill="currentColor">tnk</tspan>}
+  </text>
+</svg>

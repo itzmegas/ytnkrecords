@@ -12,22 +12,25 @@ const navItems = [
 <header class="fixed top-0 left-0 w-full z-50 glass">
   <nav class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
     <a href="/" class="hover:opacity-80 transition-opacity">
-      <Logo size="md" showRecords={true} />
+      <Logo size="lg" showRecords={true} />
     </a>
-    
+
     <ul class="flex gap-8">
-      {navItems.map(item => (
-        <li>
-          <a 
-            href={item.href} 
-            class="text-sm uppercase tracking-widest hover:text-neon-purple transition-colors duration-300"
-          >
-            {item.name}
-          </a>
-        </li>
-      ))}
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-sm uppercase tracking-widest hover:text-neon-purple transition-colors duration-300"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </header>
 
-<div class="h-20"></div> <!-- Spacer for fixed header -->
+<div class="h-20"></div>
+<!-- Spacer for fixed header -->

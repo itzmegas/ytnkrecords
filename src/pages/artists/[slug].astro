@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
+import ReleaseCard from "../../components/ReleaseCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const artists = await getCollection("artists");
+  return artists.map((artist) => ({
+    params: { slug: artist.slug },
+    props: { artist },
+  }));
+}
+
+const { artist } = Astro.props;
+
+// Get releases for this artist
+const allReleases = await getCollection("releases");
+const artistReleases = allReleases.filter(
+  (release) => release.data.artist.slug === artist.slug,
+);
+
+// Sort by date descending
+artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title={`${artist.data.name} | Ytnk Records`}>
+  <div class="relative min-h-screen">
+    <!-- Hero Header -->
+    <div class="relative h-[60vh] w-full">
+      <Image
+        src={artist.data.image}
+        alt={artist.data.name}
+        width={1920}
+        height={1080}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-linear-to-t from-dark via-dark/60 to-transparent"></div>
+      
+      <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-7xl mx-auto left-1/2 -translate-x-1/2">
+        <h1 class="text-6xl md:text-9xl font-display font-black tracking-tighter neon-glow-purple uppercase italic">
+          {artist.data.name}
+        </h1>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <!-- Info Column -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-32">
+          <h2 class="text-2xl font-display font-bold text-neon-cyan uppercase tracking-widest mb-6">Biography</h2>
+          <div class="text-gray-300 leading-relaxed space-y-4">
+            {artist.data.bio}
+          </div>
+
+          <div class="mt-12">
+            <h2 class="text-2xl font-display font-bold text-neon-cyan uppercase tracking-widest mb-6">Connect</h2>
+            <div class="flex flex-wrap gap-4">
+              {artist.data.socials.spotify && (
+                <a href={artist.data.socials.spotify} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Spotify</a>
+              )}
+              {artist.data.socials.soundcloud && (
+                <a href={artist.data.socials.soundcloud} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Soundcloud</a>
+              )}
+              {artist.data.socials.instagram && (
+                <a href={artist.data.socials.instagram} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+              )}
+              {artist.data.socials.facebook && (
+                <a href={artist.data.socials.facebook} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Facebook</a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Releases Column -->
+      <div class="lg:col-span-2">
+        <h2 class="text-2xl font-display font-bold text-neon-purple uppercase tracking-widest mb-12">Discography</h2>
+        
+        {artistReleases.length > 0 ? (
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {artistReleases.map((release) => (
+              <ReleaseCard release={release} />
+            ))}
+          </div>
+        ) : (
+          <p class="text-gray-500 italic">No releases found for this artist yet.</p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>

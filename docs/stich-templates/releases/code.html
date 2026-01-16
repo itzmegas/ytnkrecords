@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ytnk Records | Release Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cf20ee",
+                        "accent-cyan": "#00FFFF",
+                        "background-light": "#f1f1f4",
+                        "background-dark": "#16161d",
+                        "card-dark": "#1d1d26",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes pulse-bg {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+        .pulse-layer {
+            animation: pulse-bg 0.413s infinite ease-in-out; /* 145 BPM sync */
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(207, 32, 238, 0.3);
+            border: 1px solid rgba(207, 32, 238, 0.4);
+        }
+        .track-hover:hover .data-accent {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+        .neo-glass {
+            background: rgba(22, 22, 29, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Pulsing Background Elements -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="pulse-layer absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary/20 blur-[120px]"></div>
+<div class="pulse-layer absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent-cyan/10 blur-[120px]" style="animation-delay: 0.206s;"></div>
+</div>
+<!-- Navigation -->
+<nav class="relative z-50 flex items-center justify-between px-8 py-6 border-b border-white/5 neo-glass">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<span class="material-icons text-white text-lg">radio</span>
+</div>
+<span class="font-bold tracking-tighter text-xl uppercase">Ytnk Records</span>
+</div>
+<div class="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase opacity-70">
+<a class="hover:text-primary transition-colors" href="#">Releases</a>
+<a class="hover:text-primary transition-colors" href="#">Artists</a>
+<a class="hover:text-primary transition-colors" href="#">Lab</a>
+<a class="hover:text-primary transition-colors" href="#">Connect</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-icons opacity-60 hover:opacity-100">search</button>
+<button class="material-icons opacity-60 hover:opacity-100">shopping_bag</button>
+</div>
+</nav>
+<main class="relative z-10 container mx-auto px-6 py-12 lg:py-20">
+<div class="grid grid-cols-12 gap-8 lg:gap-16 items-start">
+<!-- Left Column: Artwork -->
+<div class="col-span-12 lg:col-span-5 sticky top-24">
+<div class="relative group">
+<!-- Glow Aura -->
+<div class="absolute inset-0 bg-primary/30 blur-3xl rounded-xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<div class="relative aspect-square overflow-hidden rounded-xl border border-white/10 shadow-2xl">
+<img alt="Release Artwork" class="w-full h-full object-cover" data-alt="Psychedelic digital art with neon geometric patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx54JBN_iqKBZ2Xf2FBsXR8kgSWYCYShdHuro8Uyi77oF4TjHavSeUINvJu85w5uyC5KSqhtzYTnpQO57NyxDff3Z1Zdr1FdKOgujSV8j-zic0e0S96VbZyx9tFNf55x5eYm8T8wwmOBsQtrjLDzwkM2FC5A0BEQwkL8-_OerP4eM2xzlzorn4mmdtBdXHpUdZZNba5_B94xlVvnloRkC6k2SiTQ0PC2xjDpPjHWvTv3a_d-5xhf4MvA7xNf4cgO9SPgd6k_0kY6uu"/>
+<!-- Floating Play Overlay -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm">
+<button class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white shadow-2xl transform scale-90 group-hover:scale-100 transition-transform">
+<span class="material-icons text-4xl">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Technical Meta Strip -->
+<div class="mt-8 grid grid-cols-3 gap-4 font-body text-[10px] tracking-[0.2em] uppercase text-white/40">
+<div class="border-l border-primary/40 pl-3">
+<p class="mb-1 text-primary/60">Released</p>
+<p class="text-white/80">OCT 24, 2023</p>
+</div>
+<div class="border-l border-primary/40 pl-3">
+<p class="mb-1 text-primary/60">Catalog</p>
+<p class="text-white/80">YTNK-082</p>
+</div>
+<div class="border-l border-primary/40 pl-3">
+<p class="mb-1 text-primary/60">Format</p>
+<p class="text-white/80">Digital / WAV</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Tracks -->
+<div class="col-span-12 lg:col-span-7 space-y-10">
+<!-- Release Header -->
+<header>
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-[10px] font-bold tracking-widest uppercase rounded">New Release</span>
+<span class="text-white/30 text-[10px] tracking-widest uppercase">• Psytrance</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-bold tracking-tight uppercase mb-2 leading-none">
+                        Neural <span class="text-primary">Dimensions</span>
+</h1>
+<h2 class="text-2xl lg:text-3xl font-light tracking-[0.3em] uppercase opacity-80">Astra</h2>
+<p class="mt-6 text-lg font-body text-white/60 leading-relaxed max-w-xl">
+                        A transcendental journey through the synaptic pathways of consciousness. Neural Dimensions blends 145 BPM driving basslines with glitch-infused soundscapes and ethereal vocal fragments.
+                    </p>
+</header>
+<!-- Tracklist -->
+<section class="space-y-2">
+<div class="flex items-center px-4 py-2 text-[10px] uppercase tracking-widest text-white/30 border-b border-white/5">
+<div class="w-8">#</div>
+<div class="flex-1">Title</div>
+<div class="w-20 text-right">BPM</div>
+<div class="w-20 text-right">Key</div>
+<div class="w-24 text-right">Time</div>
+</div>
+<!-- Track 01 -->
+<div class="track-hover group flex items-center px-4 py-4 neo-glass rounded-lg border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="w-8 font-body text-white/30 group-hover:text-primary transition-colors">01</div>
+<div class="flex-1 font-medium tracking-wide">Cosmic Trigger</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">144</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">G# min</div>
+<div class="w-24 text-right font-body text-xs text-white/50">07:42</div>
+</div>
+<!-- Track 02 -->
+<div class="track-hover group flex items-center px-4 py-4 neo-glass rounded-lg border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="w-8 font-body text-white/30 group-hover:text-primary transition-colors">02</div>
+<div class="flex-1 font-medium tracking-wide">Digital Shaman</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">146</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">F Maj</div>
+<div class="w-24 text-right font-body text-xs text-white/50">08:15</div>
+</div>
+<!-- Track 03 -->
+<div class="track-hover group flex items-center px-4 py-4 neo-glass rounded-lg border border-white/5 hover:border-primary/30 transition-all cursor-pointer">
+<div class="w-8 font-body text-white/30 group-hover:text-primary transition-colors">03</div>
+<div class="flex-1 font-medium tracking-wide">Ethereal Uplink</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">145</div>
+<div class="w-20 text-right data-accent font-body text-xs text-white/50 transition-colors">C min</div>
+<div class="w-24 text-right font-body text-xs text-white/50">06:58</div>
+</div>
+</section>
+<!-- Platform CTAs -->
+<div class="pt-6">
+<h3 class="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-6">Listen &amp; Purchase</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all" href="#">
+<span class="material-icons text-3xl mb-2 text-white/40 group-hover:text-[#1DB954] transition-colors">spotify</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Spotify</span>
+</a>
+<a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all" href="#">
+<span class="material-icons text-3xl mb-2 text-white/40 group-hover:text-accent-cyan transition-colors">album</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Beatport</span>
+</a>
+<a class="group flex flex-col items-center justify-center py-6 px-4 neo-glass border border-white/5 rounded-lg hover:border-primary/50 transition-all" href="#">
+<span class="material-icons text-3xl mb-2 text-white/40 group-hover:text-[#FA243C] transition-colors">apple</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Apple Music</span>
+</a>
+<a class="group flex flex-col items-center justify-center py-6 px-4 bg-primary text-white rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform" href="#">
+<span class="material-icons text-3xl mb-2">shopping_cart</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Buy Now</span>
+</a>
+</div>
+</div>
+<!-- Labels/Tags -->
+<div class="flex flex-wrap gap-2 pt-4">
+<span class="px-3 py-1 bg-white/5 text-[10px] uppercase tracking-widest text-white/50 rounded-full border border-white/10">Full-On</span>
+<span class="px-3 py-1 bg-white/5 text-[10px] uppercase tracking-widest text-white/50 rounded-full border border-white/10">Atmospheric</span>
+<span class="px-3 py-1 bg-white/5 text-[10px] uppercase tracking-widest text-white/50 rounded-full border border-white/10">Night Psy</span>
+</div>
+</div>
+</div>
+<!-- Secondary Release Grid -->
+<section class="mt-32">
+<div class="flex items-center justify-between mb-12">
+<h4 class="text-2xl font-bold uppercase tracking-tight">More from <span class="text-primary">Astra</span></h4>
+<a class="text-xs uppercase tracking-[0.3em] text-white/40 hover:text-primary transition-colors" href="#">View Artist Profile</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Related 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-4 border border-white/5">
+<img alt="Album 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vibrant abstract colorful wave patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAodhJxLzTHehi7donV9gqMe0Py579u-vUnewSUF4kIs9sf8XooV_dlGgrImiMu0_mauBxGP9xYojjhE5U-B9PTP1OJh2sXkgKjqat7z6vyj4FvcMzzQQdk2qoRkEewgGfs18DwNZgybzaJ28QH8FpJ-Ghw6Kc7tqRBUAtdrC4zFHDy5WDzVJ7sE6C-2r8cprAqvOwACLeL0onr4JiLR0V25SyfYwVd5Zb_KHPRol1vWUAeFYxPR8i_nInkBUgeQGORSKuIkVbtn1Jd"/>
+</div>
+<p class="text-sm font-bold uppercase tracking-wide">Hyperdrive Theory</p>
+<p class="text-[10px] uppercase tracking-widest text-white/40">EP • 2022</p>
+</div>
+<!-- Related 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-4 border border-white/5">
+<img alt="Album 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital glitch art with vibrant violet lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9-UonLmLBlLzGoDP8Dqk5Hs1aB7hoedfC0dzmTDN3NHd_txtt6_nhuUQRu8RqnsSD_H1PBKay_tZzT5hTSqxcFOPp1w6uyHyKxyIOkwm1C8IMxrXOZPrTpT6Y04ylGj5rW0c02TYJH3MtO2hQbOmnUeHf9M1RbbhoOpZVkzyfgXNrH01-BCo2jmz6andpEkU8KvXbmCRkMEO9S9VF7uNWU2B5qfiByi0TDVwWNBEXf4pmDXg8GPmNnUlk1HDVsqW5YI7CNrt9skxi"/>
+</div>
+<p class="text-sm font-bold uppercase tracking-wide">Synaptic Overload</p>
+<p class="text-[10px] uppercase tracking-widest text-white/40">Single • 2023</p>
+</div>
+<!-- Related 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-4 border border-white/5">
+<img alt="Album 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist abstract neon digital background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTXof-rnx4OzjA5OndwC2z32XoTzYRd2GHidBzIHBGw4u2-iohjxMrcdYmI2H2nKRUsIdgE3_d9awDffhK-oRrMK8T50umK-lO5RL7pb2V_tArRlNcDRrRM-E8649JNp5fhkbzHNObwEJBYeBKbquShXax1gFfJhT_e5bdlr3SRuZhdZIN4KiB-jZKvEB2Lu1M91WgaeeZJDFBpeK2WFkqpQjQxlGedSLqS7gIzL9XBkwdYHYwLeRR_0jlJypzORieUCC9BPeUTOFg"/>
+</div>
+<p class="text-sm font-bold uppercase tracking-wide">Deep State</p>
+<p class="text-[10px] uppercase tracking-widest text-white/40">LP • 2021</p>
+</div>
+<!-- Related 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-4 border border-white/5">
+<img alt="Album 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Smooth purple and pink gradient abstract art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo6u-s64SH5sd7HsPrfMgmghQbE0gZgjkm-R5uw8qBT8gyCmYSE4-8_KOepztKClckXvLyhSoQXXxgMEj4Oq5d0n6AXmOhf2N8V_o2spzyoRYO1Zd5qepAtZnUf2AV1YInCieVBKoTxpGL-IdqtpnsR6ApMUYt9fEvAp_6mj1J4ZGeDjd-MQrxnLtOYF-s8bsAJQuBWeFoutxugZTc63bBG8XdkyosGiAzb3Vyep2rRXcIe8-yyNcL_udB1K_LAKopVVQe4ihapElk"/>
+</div>
+<p class="text-sm font-bold uppercase tracking-wide">Liquid Light</p>
+<p class="text-[10px] uppercase tracking-widest text-white/40">EP • 2023</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="mt-32 border-t border-white/5 py-12 px-8 neo-glass relative z-10">
+<div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+<div class="text-[10px] tracking-[0.4em] uppercase opacity-40">
+                © 2024 Ytnk Records. All sensory data reserved.
+            </div>
+<div class="flex justify-center gap-6">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-icons text-sm">facebook</span></a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-icons text-sm">camera_alt</span></a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-icons text-sm">alternate_email</span></a>
+</div>
+<div class="text-right flex flex-col items-end">
+<div class="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-2">Network Status</div>
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 bg-accent-cyan rounded-full animate-pulse"></div>
+<span class="text-xs font-body font-bold tracking-widest">ENCRYPTED_LINK_ACTIVE</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

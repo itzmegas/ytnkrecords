@@ -1,5 +1,6 @@
 ---
 import Logo from "@/components/Logo.astro";
+import { IconBrandInstagram } from "@tabler/icons-react";
 
 const navItems = [
   { name: "Artists", href: "/artists" },
@@ -30,14 +31,7 @@ const navItems = [
     </nav>
 
     <div class="flex items-center gap-4">
-      <button class="p-2 hover:text-primary transition-colors">
-        <span class="material-symbols-outlined">shopping_cart</span>
-      </button>
-      <button
-        class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all glow-border"
-      >
-        Sign In
-      </button>
+      <a><IconBrandInstagram /> </a>
     </div>
   </div>
 </header>

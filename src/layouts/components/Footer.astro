@@ -6,12 +6,12 @@ import { getEntry } from "astro:content";
 const latestReleases = await getCollection("releases");
 latestReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const currentTrack = latestReleases[0];
-const artist = currentTrack
-  ? await getEntry(currentTrack.data.artist)
-  : null;
+const artist = currentTrack ? await getEntry(currentTrack.data.artist) : null;
 ---
 
-<footer class="fixed bottom-0 w-full glass-player z-50 h-24 px-6 flex items-center">
+<footer
+  class="fixed bottom-0 w-full glass-player z-50 h-24 px-6 flex items-center"
+>
   <div class="max-w-7xl mx-auto w-full grid grid-cols-3 items-center">
     <!-- Currently Playing -->
     <div class="flex items-center gap-4">

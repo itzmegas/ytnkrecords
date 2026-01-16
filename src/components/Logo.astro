@@ -1,5 +1,5 @@
 ---
-import LogoSVG from "./LogoSVG.astro";
+import LogoSVG from "@/components/LogoSVG.astro";
 
 interface Props {
   class?: string;
@@ -8,16 +8,11 @@ interface Props {
   format?: "html" | "svg";
 }
 
-const {
-  class: className,
-  size = "md",
-  showRecords = false,
-  format = "html",
-} = Astro.props;
+const { class: className, size = "md", format = "html" } = Astro.props;
 
 const sizeClasses = {
-  sm: "text-xl",
-  md: "text-3xl",
+  sm: "text-2xl",
+  md: "text-4xl",
   lg: "text-5xl",
   xl: "text-7xl",
   "2xl": "text-9xl",

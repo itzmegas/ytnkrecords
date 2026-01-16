@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import ReleaseCard from "../../components/ReleaseCard.astro";
-import Layout from "../../layouts/Layout.astro";
+import ReleaseCard from "@/components/ReleaseCard.astro";
+import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const artists = await getCollection("artists");

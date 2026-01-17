@@ -1,16 +1,15 @@
 ---
-import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import {
+  IconArrowsShuffle,
   IconHeart,
   IconPlayerPlay,
   IconPlayerSkipBack,
   IconPlayerSkipForward,
   IconRepeat,
-  IconArrowsShuffle,
-  IconVolume,
   IconShoppingCart,
+  IconVolume,
 } from "@tabler/icons-react";
 
 const latestReleases = await getCollection("releases");

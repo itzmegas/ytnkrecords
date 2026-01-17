@@ -1,6 +1,29 @@
 ---
 import Logo from "@/components/Logo.astro";
-import { IconBrandInstagram } from "@tabler/icons-react";
+import {
+  IconBrandBandcamp,
+  IconBrandInstagram,
+  IconBrandSoundcloud,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/ytnkrecords/",
+    icon: IconBrandInstagram,
+  },
+  {
+    name: "Youtube",
+    href: "https://www.youtube.com/ytnkrecords",
+    icon: IconBrandYoutube,
+  },
+  {
+    name: "Beatport",
+    href: "https://ytnkrecords.bandcamp.com/",
+    icon: IconBrandBandcamp,
+  },
+];
 
 const navItems = [
   { name: "Artists", href: "/artists" },
@@ -31,7 +54,20 @@ const navItems = [
     </nav>
 
     <div class="flex items-center gap-4">
-      <a><IconBrandInstagram /> </a>
+      {
+        socialLinks.map((link) => {
+          const Icon = link.icon;
+          return (
+            <a
+              href={link.href}
+              class="text-sm font-medium tracking-widest uppercase hover:text-primary transition-colors"
+              target="_blank"
+            >
+              <Icon />
+            </a>
+          );
+        })
+      }
     </div>
   </div>
 </header>

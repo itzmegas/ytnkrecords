@@ -15,15 +15,17 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
+    "@gsap/react": "^2.1.2",
     "@tabler/icons-react": "^3.36.0",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/gsap": "^3.0.0",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.9",
+    "gsap": "^3.14.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "sharp": "^0.34.5",
-    "simple-parallax-js": "^6.3.3",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

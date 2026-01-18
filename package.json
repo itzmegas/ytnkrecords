@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "biome lint --write .",
-    "lint:fix": "biome check --write ."
+    "lint:fix": "biome check --write .",
+    "beatport:auth": "tsx src/scripts/beatport-auth.ts",
+    "beatport:sync": "tsx src/scripts/beatport-sync.ts"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -23,6 +25,8 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.7"
+    "@biomejs/biome": "2.3.7",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.21.0"
   }
 }

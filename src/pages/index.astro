@@ -4,10 +4,14 @@ import { getCollection } from "astro:content";
 import ReleaseCard from "@/components/ReleaseCard.astro";
 import Layout from "@/layouts/Layout.astro";
 
+import { getLabelReleases } from "@/lib/beatport";
+
 const latestReleases = await getCollection("releases");
 latestReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const featuredReleases = latestReleases.slice(0, 6);
+
+const beatportReleases = await getLabelReleases();
 
 const artists = await getCollection("artists");
 const spotlightArtist = artists[0]; // Just pick the first one for now
@@ -103,6 +107,11 @@ const spotlightArtist = artists[0]; // Just pick the first one for now
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {featuredReleases.map((release) => <ReleaseCard release={release} />)}
+        {
+          beatportReleases
+            .slice(0, 12)
+            .map((release) => <ReleaseCard beatportRelease={release} />)
+        }
       </div>
     </section>
 

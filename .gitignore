@@ -17,6 +17,8 @@ firebase-debug.log*
 # environment variables
 .env
 .env.production
+.beatport-tokens.json
+
 
 # macOS-specific files
 .DS_Store

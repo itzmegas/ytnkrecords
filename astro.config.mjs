@@ -12,4 +12,8 @@ export default defineConfig({
   },
 
   integrations: [react()],
+
+  image: {
+    domains: ["geo-media.beatport.com", "backend.beatport.com"],
+  },
 });

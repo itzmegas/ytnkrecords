@@ -2,22 +2,41 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
+import type { BeatportRelease } from "@/lib/beatport";
 
 interface Props {
-  release: CollectionEntry<"releases">;
+  release?: CollectionEntry<"releases">;
+  beatportRelease?: BeatportRelease;
 }
 
-const { release } = Astro.props;
-const artist = await getEntry(release.data.artist);
+const { release, beatportRelease } = Astro.props;
+
+let title = "";
+let cover: any = "";
+let artistName = "";
+let url = "#";
+
+if (release) {
+  const artist = await getEntry(release.data.artist);
+  title = release.data.title;
+  cover = release.data.cover;
+  artistName = artist?.data.name || "Unknown Artist";
+  url = `/releases/${release.slug}`;
+} else if (beatportRelease) {
+  title = beatportRelease.name;
+  cover = beatportRelease.image.uri;
+  artistName = beatportRelease.artists.map(a => a.name).join(", ");
+  url = `https://www.beatport.com/release/${beatportRelease.slug}/${beatportRelease.id}`;
+}
 ---
 
-<a href={`/releases/${release.slug}`} class="group cursor-pointer">
+<a href={url} class="group cursor-pointer" target={beatportRelease ? "_blank" : "_self"}>
   <div
     class="aspect-square rounded-xl overflow-hidden border border-white/5 relative mb-4 transition-all duration-500 group-hover:border-primary/50 group-hover:-translate-y-2"
   >
     <Image
-      src={release.data.cover}
-      alt={release.data.title}
+      src={cover}
+      alt={title}
       width={400}
       height={400}
       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -31,11 +50,12 @@ const artist = await getEntry(release.data.artist);
     </div>
   </div>
   <h3
-    class="font-bold text-sm tracking-wide group-hover:text-primary transition-colors"
+    class="font-bold text-sm tracking-wide group-hover:text-primary transition-colors line-clamp-1"
   >
-    {release.data.title}
+    {title}
   </h3>
-  <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">
-    {artist?.data.name}
+  <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1 line-clamp-1">
+    {artistName}
   </p>
 </a>
+

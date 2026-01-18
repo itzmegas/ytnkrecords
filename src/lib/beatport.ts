@@ -3,12 +3,6 @@ import type { BeatportRelease } from "@/types/BeatportRelease";
 const LABEL_ID = "170546";
 const LABEL_URL = `https://www.beatport.com/label/ytnk-records/${LABEL_ID}`;
 
-
-
-
-
-
-
 /**
  * Obtiene los releases extrayendo los datos del HTML de la página del sello.
  * Este método es más fiable para una web estática ya que no depende de tokens que caducan.

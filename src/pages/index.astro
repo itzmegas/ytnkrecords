@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { IconShoppingCart } from "@tabler/icons-react";
 import ReleaseCard from "@/components/ReleaseCard.astro";
 import Badge from "@/components/ui/Badge.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getLabelReleases } from "@/lib/beatport";
-import { IconShoppingCart } from "@tabler/icons-react";
 
 const beatportReleases = await getLabelReleases();
 const artists = await getCollection("artists");

@@ -1,35 +1,35 @@
 ---
 interface Props {
-    color?: "primary" | "secondary" | "accent" | "green";
+  color?: "primary" | "secondary" | "accent" | "green";
 }
 
 const { color = "primary" } = Astro.props;
 
 const colorClasses = {
-    primary: {
-        border: "border-primary/40",
-        bg: "bg-primary/5",
-        text: "text-primary",
-        dot: "bg-primary",
-    },
-    secondary: {
-        border: "border-secondary/40",
-        bg: "bg-secondary/5",
-        text: "text-secondary",
-        dot: "bg-secondary",
-    },
-    accent: {
-        border: "border-accent/40",
-        bg: "bg-accent/5",
-        text: "text-accent",
-        dot: "bg-accent",
-    },
-    green: {
-        border: "border-green-500/60",
-        bg: "bg-green-500/10",
-        text: "text-green-500",
-        dot: "bg-green-500",
-    },
+  primary: {
+    border: "border-primary/40",
+    bg: "bg-primary/5",
+    text: "text-primary",
+    dot: "bg-primary",
+  },
+  secondary: {
+    border: "border-secondary/40",
+    bg: "bg-secondary/5",
+    text: "text-secondary",
+    dot: "bg-secondary",
+  },
+  accent: {
+    border: "border-accent/40",
+    bg: "bg-accent/5",
+    text: "text-accent",
+    dot: "bg-accent",
+  },
+  green: {
+    border: "border-green-500/60",
+    bg: "bg-green-500/10",
+    text: "text-green-500",
+    dot: "bg-green-500",
+  },
 };
 
 const styles = colorClasses[color] ?? colorClasses.primary;

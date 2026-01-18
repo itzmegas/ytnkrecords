@@ -35,6 +35,9 @@ importers:
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
+      simple-parallax-js:
+        specifier: ^6.3.3
+        version: 6.3.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
@@ -1798,6 +1801,12 @@ packages:
 
   shiki@3.21.0:
     resolution: {integrity: sha512-N65B/3bqL/TI2crrXr+4UivctrAGEjmsib5rPMMPpFp1xAx/w03v8WZ9RDDFYteXoEgY7qZ4HGgl5KBIu1153w==}
+
+  simple-parallax-js@6.3.3:
+    resolution: {integrity: sha512-drb/E9La5MRAq86RLi/Y4ku7l4wybZTDbWNq1mQdx/DbLlgf3YbZytw7Fe3p+MgtQQjIc9V63d7UK1Nc+DMk6Q==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -4059,6 +4068,11 @@ snapshots:
       '@shikijs/types': 3.21.0
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
+
+  simple-parallax-js@6.3.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   sisteransi@1.0.5: {}
 

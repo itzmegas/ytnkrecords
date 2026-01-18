@@ -1,1 +1,1 @@
-export * from './Badge.astro'
+export * from "./Badge.astro";

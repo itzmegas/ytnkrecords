@@ -1,1 +1,1 @@
-export * from './BeatportRelease'
+export * from "./BeatportRelease";

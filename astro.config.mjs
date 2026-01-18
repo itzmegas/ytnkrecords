@@ -16,4 +16,5 @@ export default defineConfig({
   image: {
     domains: ["geo-media.beatport.com", "backend.beatport.com"],
   },
+  site: "https://ytnkrecords.com",
 });

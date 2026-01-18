@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { IconShoppingCart } from "@tabler/icons-react";
 import ReleaseCard from "@/components/ReleaseCard.astro";
+import { HeroAnimation } from "@/components/react/HeroAnimation";
 import Badge from "@/components/ui/Badge.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getLabelReleases } from "@/lib/beatport";
@@ -18,71 +19,77 @@ const upcomingReleases = beatportReleases
 ---
 
 <Layout title="YTNK Records | Transcending Reality">
-  <main class="pt-10 pb-32">
-    <!-- Hero Section -->
-    <section
-      class="relative px-6 py-12 lg:py-24 max-w-7xl mx-auto overflow-hidden"
-    >
-      <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-        <div class="flex flex-col gap-8">
-          <h1
-            class="text-6xl md:text-8xl font-black leading-none tracking-tighter"
-          >
-            {heroRelease?.name}
-            <span class="text-primary italic"
-              >{heroRelease?.artists[0].name}</span
+  <HeroAnimation client:load>
+    <div class="pt-10 pb-32">
+      <!-- Hero Section -->
+      <section
+        class="relative px-6 py-12 lg:py-24 max-w-7xl mx-auto overflow-hidden"
+      >
+        <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div class="flex flex-col gap-8">
+            <h1
+              class="text-6xl md:text-8xl font-black leading-none tracking-tighter"
             >
-          </h1>
-          <div class="flex gap-2">
-            <Badge color="green">Exclusive</Badge>
-            <Badge color="primary">{heroRelease?.publish_date}</Badge>
-            <Badge color="secondary">{heroRelease?.price.display}</Badge>
+              <div class="overflow-hidden">
+                <span class="reveal-text block">{heroRelease?.name}</span>
+              </div>
+              <div class="overflow-hidden">
+                <span class="reveal-text block text-primary italic"
+                  >{heroRelease?.artists[0].name}</span
+                >
+              </div>
+            </h1>
+            <div class="flex gap-2 reveal-text">
+              <Badge color="green">Exclusive</Badge>
+              <Badge color="primary">{heroRelease?.publish_date}</Badge>
+              <Badge color="secondary">{heroRelease?.price.display}</Badge>
+            </div>
+            <p class="text-lg text-slate-400 max-w-md font-sans reveal-text">
+              {heroRelease?.desc}
+            </p>
+            <div class="flex flex-wrap gap-4 reveal-text">
+              <a
+                href={`https://www.beatport.com/release/${heroRelease?.slug}/${heroRelease?.id}`}
+                target="_blank"
+                class="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform glow-border"
+              >
+                Buy Now
+                <IconShoppingCart />
+              </a>
+              <a
+                href="/releases"
+                class="bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all text-center"
+              >
+                View Catalog
+              </a>
+            </div>
           </div>
-          <p class="text-lg text-slate-400 max-w-md font-sans">
-            {heroRelease?.desc}
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a
-              href={`https://www.beatport.com/release/${heroRelease?.slug}/${heroRelease?.id}`}
-              target="_blank"
-              class="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform glow-border"
+          <div class="relative aspect-square flex items-center justify-center">
+            <!-- Abstract Visual Ornament -->
+            <div
+              class="absolute inset-0 bg-linear-to-tr from-primary/20 via-transparent to-secondary/20 rounded-full blur-[100px] animate-pulse"
             >
-              Buy Now
-              <IconShoppingCart />
-            </a>
-            <a
-              href="/releases"
-              class="bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all text-center"
+            </div>
+            <div
+              class="hero-image-container relative w-full aspect-square bg-cover bg-center rounded-2xl overflow-hidden shadow-[0_0_15px_1px_rgba(165,55,253,0.5)]"
             >
-              View Catalog
-            </a>
+              {
+                heroRelease && (
+                  <Image
+                    src={heroRelease.image.uri}
+                    alt="Featured Release"
+                    width={600}
+                    height={600}
+                    class="w-full h-full object-cover"
+                  />
+                )
+              }
+            </div>
           </div>
         </div>
-        <div class="relative aspect-square flex items-center justify-center">
-          <!-- Abstract Visual Ornament -->
-          <div
-            class="absolute inset-0 bg-linear-to-tr from-primary/20 via-transparent to-secondary/20 rounded-full blur-[100px] animate-pulse"
-          >
-          </div>
-          <div
-            class="relative w-full aspect-square bg-cover bg-center rounded-2xl overflow-hidden shadow-[0_0_15px_1px_rgba(165,55,253,0.5)]"
-          >
-            {
-              heroRelease && (
-                <Image
-                  src={heroRelease.image.uri}
-                  alt="Featured Release"
-                  width={600}
-                  height={600}
-                  class="w-full h-full object-cover"
-                />
-              )
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </div>
+  </HeroAnimation>
 
   <!-- Next Releases Section -->
   <section class="max-w-7xl mx-auto px-6 mt-20">

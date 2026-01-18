@@ -10,20 +10,29 @@ const LABEL_URL = `https://www.beatport.com/label/ytnk-records/${LABEL_ID}`;
 export async function getLabelReleases(
   labelId = LABEL_ID,
 ): Promise<BeatportRelease[]> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
   try {
+    console.log(`Fetching Beatport page: ${LABEL_URL}`);
     const response = await fetch(LABEL_URL, {
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       },
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error(`Failed to fetch label page: ${response.status}`);
       return [];
     }
 
+    console.log("Beatport page fetched, parsing HTML...");
     const html = await response.text();
+    console.log(`HTML size: ${Math.round(html.length / 1024)} KB`);
     const nextDataMatch = html.match(
       /<script id="__NEXT_DATA__" type="application\/json">([^<]+)<\/script>/,
     );

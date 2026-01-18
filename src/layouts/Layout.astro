@@ -3,7 +3,8 @@ import Footer from "@/layouts/components/Footer.astro";
 import Header from "@/layouts/components/Header.astro";
 import "@/styles/global.css";
 
-import { ParallaxBackground } from "@/layouts/components/ParallaxBackground";
+import { Image } from "astro:assets";
+import bgImage from "@/assets/geometric-shapes-bg-rotate.jpg";
 
 interface Props {
   title?: string;
@@ -31,13 +32,18 @@ const { title = "Ytnk Records" } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body
-    class="text-white selection:bg-neon-purple/30 relative min-h-screen"
-  >
+  <body class="text-white selection:bg-neon-purple/30 relative min-h-screen">
     <div class="fixed inset-0 bg-dark -z-20"></div>
-    <ParallaxBackground client:only="react" />
     <Header />
     <main class="min-h-screen relative z-10">
+      <div class="w-full h-full absolute top-0 left-0 z-0 overflow-hidden">
+        <Image
+          id="bg-image"
+          src={bgImage}
+          alt="bg-image"
+          class="w-full h-full object-cover opacity-20"
+        />
+      </div>
       <slot />
     </main>
     <!--   <Footer /> -->

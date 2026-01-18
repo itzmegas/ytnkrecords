@@ -9,7 +9,6 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   output: "static",
   adapter: cloudflare({
-    imageService: "compile",
     platformProxy: {
       enabled: true,
     },

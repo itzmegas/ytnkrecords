@@ -2,7 +2,10 @@
   "name": "ytnkrecords",
   "main": "./dist/_worker.js",
   "compatibility_date": "2024-11-18",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat",
+    "transform_message_channel_to_main_thread"
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"

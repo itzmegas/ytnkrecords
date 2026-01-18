@@ -1,41 +1,29 @@
-import { useEffect, useRef } from "react";
-import SimpleParallax from "simple-parallax-js/vanilla";
+import SimpleParallax from "simple-parallax-js";
 import backgroundImage from "@/assets/geometric-shapes-background.jpg";
 
 export const ParallaxBackground = () => {
-  const imgRef = useRef<HTMLImageElement>(null);
-  const src =
-    typeof backgroundImage === "string"
-      ? backgroundImage
-      : (backgroundImage as any).src;
+    const imageSrc =
+        typeof backgroundImage === "string"
+            ? backgroundImage
+            : (backgroundImage as any)?.src;
 
-  useEffect(() => {
-    console.log("ParallaxBackground image src:", src);
-    if (imgRef.current) {
-      const instance = new SimpleParallax(imgRef.current, {
-        transition: "cubic-bezier(0,0,0,1)",
-        orientation: "up",
-        scale: 1.6,
-        delay: 0,
-      });
-
-      return () => {
-        instance.destroy();
-      };
-    }
-  }, [src]);
-
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      <img
-        ref={imgRef}
-        src={
-          src ||
-          "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?auto=format&fit=crop&q=80&w=2070"
-        }
-        alt="Background"
-        className="w-full h-full object-cover opacity-40"
-      />
-    </div>
-  );
+    return (
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+            {imageSrc ? (
+                <SimpleParallax
+                    scale={1.6}
+                    delay={0}
+                    transition="cubic-bezier(0,0,0,1)"
+                >
+                    <img
+                        src={imageSrc}
+                        alt="Background"
+                        className="w-full h-screen object-cover opacity-40"
+                    />
+                </SimpleParallax>
+            ) : (
+                <div className="bg-dark w-full h-full" />
+            )}
+        </div>
+    );
 };

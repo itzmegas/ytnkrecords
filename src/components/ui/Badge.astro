@@ -1,0 +1,59 @@
+---
+interface Props {
+    color?: "primary" | "secondary" | "accent" | "green";
+}
+
+const { color = "primary" } = Astro.props;
+
+const colorClasses = {
+    primary: {
+        border: "border-primary/40",
+        bg: "bg-primary/5",
+        text: "text-primary",
+        dot: "bg-primary",
+    },
+    secondary: {
+        border: "border-secondary/40",
+        bg: "bg-secondary/5",
+        text: "text-secondary",
+        dot: "bg-secondary",
+    },
+    accent: {
+        border: "border-accent/40",
+        bg: "bg-accent/5",
+        text: "text-accent",
+        dot: "bg-accent",
+    },
+    green: {
+        border: "border-green-500/60",
+        bg: "bg-green-500/10",
+        text: "text-green-500",
+        dot: "bg-green-500",
+    },
+};
+
+const styles = colorClasses[color] ?? colorClasses.primary;
+---
+
+<div
+    class:list={[
+        "inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] uppercase font-bold tracking-[0.2em] w-fit",
+        styles.border,
+        styles.bg,
+        styles.text,
+    ]}
+>
+    <span class="relative flex h-2 w-2">
+        <span
+            class:list={[
+                "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
+                styles.dot,
+            ]}></span>
+        <span
+            class:list={[
+                "relative inline-flex rounded-full h-2 w-2",
+                styles.dot,
+            ]}></span>
+    </span>
+    <slot />
+</div>

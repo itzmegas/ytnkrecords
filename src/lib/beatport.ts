@@ -1,16 +1,13 @@
+import type { BeatportRelease } from "@/types/BeatportRelease";
+
 const LABEL_ID = "170546";
 const LABEL_URL = `https://www.beatport.com/label/ytnk-records/${LABEL_ID}`;
 
-export interface BeatportRelease {
-  id: number;
-  name: string;
-  slug: string;
-  artists: Array<{ id: number; name: string; slug: string }>;
-  image: {
-    uri: string;
-  };
-  publish_date: string;
-}
+
+
+
+
+
 
 /**
  * Obtiene los releases extrayendo los datos del HTML de la página del sello.

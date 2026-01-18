@@ -2,22 +2,22 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import ReleaseCard from "@/components/ReleaseCard.astro";
+import Badge from "@/components/ui/Badge.astro";
 import Layout from "@/layouts/Layout.astro";
-
 import { getLabelReleases } from "@/lib/beatport";
-
-const latestReleases = await getCollection("releases");
-latestReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const featuredReleases = latestReleases.slice(0, 6);
+import { IconShoppingCart } from "@tabler/icons-react";
 
 const beatportReleases = await getLabelReleases();
-
 const artists = await getCollection("artists");
+
+const heroRelease = beatportReleases.find((release) => !release.pre_order);
 const spotlightArtist = artists[0]; // Just pick the first one for now
+const upcomingReleases = beatportReleases
+  .filter((release) => release.pre_order)
+  .slice(0, 6);
 ---
 
-<Layout title="Ytnk Records | Transcending Reality">
+<Layout title="YTNK Records | Transcending Reality">
   <main class="pt-10 pb-32">
     <!-- Hero Section -->
     <section
@@ -25,33 +25,31 @@ const spotlightArtist = artists[0]; // Just pick the first one for now
     >
       <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
         <div class="flex flex-col gap-8">
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/5 text-primary text-[10px] uppercase font-bold tracking-[0.2em] w-fit"
-          >
-            <span class="relative flex h-2 w-2">
-              <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
-              ></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"
-              ></span>
-            </span>
-            New Dimension Unlocked
-          </div>
           <h1
             class="text-6xl md:text-8xl font-black leading-none tracking-tighter"
           >
-            TRANSCENDING <span class="text-primary italic">REALITY</span>
+            {heroRelease?.name}
+            <span class="text-primary italic"
+              >{heroRelease?.artists[0].name}</span
+            >
           </h1>
+          <div class="flex gap-2">
+            <Badge color="green">Exclusive</Badge>
+            <Badge color="primary">{heroRelease?.publish_date}</Badge>
+            <Badge color="secondary">{heroRelease?.price.display}</Badge>
+          </div>
           <p class="text-lg text-slate-400 max-w-md font-sans">
-            Experience the next evolution of high-fidelity frequencies. A sonic
-            sanctuary for the modern voyager and the digital shaman.
+            {heroRelease?.desc}
           </p>
           <div class="flex flex-wrap gap-4">
-            <button
-              class="bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform glow-border"
+            <a
+              href={`https://www.beatport.com/release/${heroRelease?.slug}/${heroRelease?.id}`}
+              target="_blank"
+              class="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform glow-border"
             >
-              Listen Now
-            </button>
+              Buy Now
+              <IconShoppingCart />
+            </a>
             <a
               href="/releases"
               class="bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all text-center"
@@ -63,120 +61,113 @@ const spotlightArtist = artists[0]; // Just pick the first one for now
         <div class="relative aspect-square flex items-center justify-center">
           <!-- Abstract Visual Ornament -->
           <div
-            class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 rounded-full blur-[100px] animate-pulse"
+            class="absolute inset-0 bg-linear-to-tr from-primary/20 via-transparent to-secondary/20 rounded-full blur-[100px] animate-pulse"
           >
           </div>
           <div
-            class="relative w-full aspect-square bg-cover bg-center rounded-2xl border border-white/10 overflow-hidden group shadow-2xl"
+            class="relative w-full aspect-square bg-cover bg-center rounded-2xl overflow-hidden shadow-[0_0_15px_1px_rgba(165,55,253,0.5)]"
           >
             {
-              featuredReleases[0] && (
+              heroRelease && (
                 <Image
-                  src={featuredReleases[0].data.cover}
+                  src={heroRelease.image.uri}
                   alt="Featured Release"
-                  width={800}
-                  height={800}
+                  width={600}
+                  height={600}
                   class="w-full h-full object-cover"
                 />
               )
             }
-            <div class="absolute inset-0 bg-primary/10 mix-blend-color-dodge">
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"
-            >
-            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Featured Releases Section -->
-    <section class="max-w-7xl mx-auto px-6 mt-20">
-      <div class="flex items-end justify-between mb-10">
-        <div>
-          <div class="w-12 h-1 bg-primary mb-4"></div>
-          <h2 class="text-4xl font-bold tracking-tight uppercase">
-            Featured Releases
-          </h2>
-        </div>
-        <a
-          class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-8"
-          href="/releases">Explore All</a
-        >
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {featuredReleases.map((release) => <ReleaseCard release={release} />)}
-        {
-          beatportReleases
-            .slice(0, 12)
-            .map((release) => <ReleaseCard beatportRelease={release} />)
-        }
-      </div>
-    </section>
-
-    <!-- Artist Spotlight Section (Overlap Design) -->
-    {
-      spotlightArtist && (
-        <section class="max-w-7xl mx-auto px-6 mt-32 relative">
-          <div class="bg-primary/5 rounded-3xl p-8 lg:p-16 border border-primary/10 overflow-hidden flex flex-col lg:flex-row items-center gap-12">
-            <div class="relative w-full lg:w-1/2 aspect-square rounded-2xl overflow-hidden border border-primary/20 group">
-              <Image
-                src={spotlightArtist.data.image}
-                alt={spotlightArtist.data.name}
-                width={800}
-                height={800}
-                class="w-full h-full object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent mix-blend-overlay" />
-              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-background-dark/40 backdrop-blur-sm">
-                <a
-                  href={`/artists/${spotlightArtist.slug}`}
-                  class="bg-white text-background-dark px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2"
-                >
-                  <span class="material-symbols-outlined text-sm">
-                    open_in_new
-                  </span>{" "}
-                  View Profile
-                </a>
-              </div>
-            </div>
-            <div class="w-full lg:w-1/2 flex flex-col gap-6">
-              <div class="text-primary font-bold tracking-[0.3em] uppercase text-xs">
-                Artist of the Month
-              </div>
-              <h2 class="text-5xl lg:text-7xl font-black tracking-tighter uppercase italic">
-                {spotlightArtist.data.name.split(" ")[0]}{" "}
-                <span
-                  class="text-transparent"
-                  style="-webkit-text-stroke: 1px white;"
-                >
-                  {spotlightArtist.data.name.split(" ").slice(1).join(" ")}
-                </span>
-              </h2>
-              <p class="text-slate-400 font-sans text-lg leading-relaxed line-clamp-4">
-                {spotlightArtist.data.bio}
-              </p>
-              <div class="flex gap-4 items-center">
-                <a
-                  href={`/artists/${spotlightArtist.slug}`}
-                  class="bg-primary/20 border border-primary/40 text-primary px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
-                >
-                  Latest Tracks
-                </a>
-                <div class="flex gap-4">
-                  <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">share</span>
-                  </button>
-                  <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">rss_feed</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )
-    }
   </main>
+
+  <!-- Next Releases Section -->
+  <section class="max-w-7xl mx-auto px-6 mt-20">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <div class="w-12 h-1 bg-primary mb-4"></div>
+        <h2 class="text-4xl font-bold tracking-tight uppercase">
+          Upcoming Releases
+        </h2>
+      </div>
+      <a
+        class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-8"
+        href="/releases">Explore All</a
+      >
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      {
+        upcomingReleases.map((release) => (
+          <ReleaseCard beatportRelease={release} />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Artist Spotlight Section (Overlap Design) -->
+  {
+    spotlightArtist && (
+      <section class="max-w-7xl mx-auto px-6 py-12 mt-32 relative">
+        <div class="bg-primary/5 rounded-3xl p-8 lg:p-16 border border-primary/10 overflow-hidden flex flex-col lg:flex-row items-center gap-12">
+          <div class="relative w-full lg:w-1/2 aspect-square rounded-2xl overflow-hidden border border-primary/20 group">
+            <Image
+              src={spotlightArtist.data.image}
+              alt={spotlightArtist.data.name}
+              width={800}
+              height={800}
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent mix-blend-overlay" />
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-background-dark/40 backdrop-blur-sm">
+              <a
+                href={`/artists/${spotlightArtist.slug}`}
+                class="bg-white text-background-dark px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm">
+                  open_in_new
+                </span>{" "}
+                View Profile
+              </a>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2 flex flex-col gap-6">
+            <div class="text-primary font-bold tracking-[0.3em] uppercase text-xs">
+              Artist of the Month
+            </div>
+            <h2 class="text-5xl lg:text-7xl font-black tracking-tighter uppercase italic">
+              {spotlightArtist.data.name.split(" ")[0]}{" "}
+              <span
+                class="text-transparent"
+                style="-webkit-text-stroke: 1px white;"
+              >
+                {spotlightArtist.data.name.split(" ").slice(1).join(" ")}
+              </span>
+            </h2>
+            <p class="text-slate-400 font-sans text-lg leading-relaxed line-clamp-4">
+              {spotlightArtist.data.bio}
+            </p>
+            <div class="flex gap-4 items-center">
+              <a
+                href={`/artists/${spotlightArtist.slug}`}
+                class="bg-primary/20 border border-primary/40 text-primary px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
+              >
+                Latest Tracks
+              </a>
+              <div class="flex gap-4">
+                <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined">share</span>
+                </button>
+                <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined">rss_feed</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 </Layout>

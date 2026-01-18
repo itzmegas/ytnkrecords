@@ -25,7 +25,7 @@ if (release) {
 } else if (beatportRelease) {
   title = beatportRelease.name;
   cover = beatportRelease.image.uri;
-  artistName = beatportRelease.artists.map(a => a.name).join(", ");
+  artistName = beatportRelease.artists.map((a) => a.name).join(", ");
   url = `https://www.beatport.com/release/${beatportRelease.slug}/${beatportRelease.id}`;
 }
 ---

@@ -17,7 +17,7 @@ const artist = await getEntry(release.data.artist);
 // Get more from this artist
 const allReleases = await getCollection("releases");
 const moreFromArtist = allReleases
-  .filter((r) => r.data.artist.slug === artist.slug && r.slug !== release.slug)
+  .filter((r) => r.data.artist.id === artist.id && r.slug !== release.slug)
   .slice(0, 4);
 ---
 

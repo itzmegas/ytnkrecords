@@ -1,3 +1,5 @@
+import type { Image } from "./Image";
+
 type BPMRange = {
   min: number;
   max: number;
@@ -6,7 +8,7 @@ type BPMRange = {
 type Label = {
   id: number;
   name: string;
-  image: { id: number; uri: string }[];
+  image: Image;
   slug: string;
 };
 
@@ -17,11 +19,7 @@ export interface BeatportRelease {
   name: string;
   slug: string;
   artists: { id: number; name: string; slug: string }[];
-  image: {
-    id: number;
-    uri: string;
-    dynamic_uri: string;
-  };
+  image: Image;
   publish_date: string;
   bpm_range: BPMRange;
   catalog_number: string;

@@ -1,21 +1,27 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { IconShoppingCart } from "@tabler/icons-react";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconLink,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import ReleaseCard from "@/components/ReleaseCard.astro";
 import Badge from "@/components/ui/Badge.astro";
+
 import Layout from "@/layouts/Layout.astro";
 import { getLabelReleases } from "@/lib/beatport";
+import SpotlightArtist from "@/components/SpotlightArtist";
 
 const beatportReleases = await getLabelReleases();
 const artists = await getCollection("artists");
 
 const heroRelease = beatportReleases.find((release) => !release.pre_order);
 
-const spotlightArtist = artists[0]; // Just pick the first one for now
-const upcomingReleases = beatportReleases
-  .filter((release) => release.pre_order)
-  .slice(0, 6);
+const upcomingReleases = beatportReleases.filter(
+  (release) => release.pre_order,
+);
 ---
 
 <Layout title="Home">
@@ -34,12 +40,10 @@ const upcomingReleases = beatportReleases
             </div>
             <div class="flex gap-2 overflow-hidden">
               {
-                heroRelease?.artists.map((artist) => (
+                heroRelease?.artists.map((artist, index) => (
                   <span class="reveal-text block text-primary italic text-6xl">
                     {artist.name}
-                    {artist.name !==
-                      heroRelease?.artists[heroRelease?.artists.length - 1]
-                        .name && " & "}
+                    {index < (heroRelease?.artists.length || 0) - 1 && " & "}
                   </span>
                 ))
               }
@@ -66,7 +70,7 @@ const upcomingReleases = beatportReleases
               href="/releases"
               class="bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all text-center"
             >
-              View Catalog
+              More releases
             </a>
           </div>
         </div>
@@ -97,9 +101,9 @@ const upcomingReleases = beatportReleases
   </div>
 
   <!-- Next Releases Section -->
-  <section class="max-w-screen my-20 bg-dark">
-    <div class="px-100 py-30">
-      <div class="flex items-end justify-between mb-10">
+  <section class="max-w-screen my-20 px-8 pb-12 bg-gray-900/90">
+    <div class="flex flex-col justify-center items-center">
+      <div class="flex items-end justify-between mb-10 w-full">
         <div>
           <div class="w-12 h-1 bg-primary mb-4"></div>
           <h2 class="text-4xl font-bold tracking-tight uppercase">
@@ -107,9 +111,10 @@ const upcomingReleases = beatportReleases
           </h2>
         </div>
         <a
-          class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-8"
-          href="/releases">Explore All</a
-        >
+          class="text-xs font-bold uppercase tracking-widest text-white hover:underline underline-offset-8"
+          href="/releases"
+          >View All
+        </a>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {
@@ -120,66 +125,23 @@ const upcomingReleases = beatportReleases
       </div>
     </div>
   </section>
-
   <!-- Artist Spotlight Section (Overlap Design) -->
   {
-    spotlightArtist && (
-      <section class="max-w-7xl mx-auto px-6 py-12 mt-40 relative">
-        <div class="bg-primary/10 rounded-3xl p-8 lg:p-16 border border-primary/10 overflow-hidden flex flex-col lg:flex-row items-center gap-12">
-          <div class="relative w-full lg:w-1/2 aspect-square rounded-2xl overflow-hidden border border-primary/20 group">
-            <Image
-              src={spotlightArtist.data.image}
-              alt={spotlightArtist.data.name}
-              width={800}
-              height={800}
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-linear-to-tr from-primary/30 to-transparent mix-blend-overlay" />
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-background-dark/40 backdrop-blur-sm">
-              <a
-                href={`/artists/${spotlightArtist.slug}`}
-                class="bg-white text-background-dark px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2"
-              >
-                <span class="material-symbols-outlined text-sm">
-                  open_in_new
-                </span>
-                View Profile
-              </a>
-            </div>
+    artists.length > 0 && (
+      <section
+        class="
+        max-w-7xl
+        mx-auto
+        px-6
+        py-12
+        mt-40
+        relative"
+      >
+        <div class="flex flex-col gap-6 bg-primary/10 rounded-3xl px-4 py-8 lg:px-12 lg:py-16 border border-primary/10 overflow-hidden">
+          <div class="font-bold tracking-[0.3em] uppercase text-sm ml-20">
+            Artists
           </div>
-          <div class="w-full lg:w-1/2 flex flex-col gap-6">
-            <div class="text-primary font-bold tracking-[0.3em] uppercase text-xs">
-              Artist of the Month
-            </div>
-            <h2 class="text-5xl lg:text-7xl font-black tracking-tighter uppercase italic">
-              {spotlightArtist.data.name.split(" ")[0]}{" "}
-              <span
-                class="text-transparent"
-                style="-webkit-text-stroke: 1px white;"
-              >
-                {spotlightArtist.data.name.split(" ").slice(1).join(" ")}
-              </span>
-            </h2>
-            <p class="text-slate-400 font-sans text-lg leading-relaxed line-clamp-4">
-              {spotlightArtist.data.bio}
-            </p>
-            <div class="flex gap-4 items-center">
-              <a
-                href={`/artists/${spotlightArtist.slug}`}
-                class="bg-primary/20 border border-primary/40 text-primary px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
-              >
-                Latest Tracks
-              </a>
-              <div class="flex gap-4">
-                <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined">share</span>
-                </button>
-                <button class="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined">rss_feed</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          <SpotlightArtist client:idle artists={artists} />
         </div>
       </section>
     )

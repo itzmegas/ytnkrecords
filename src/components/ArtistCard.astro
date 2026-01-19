@@ -8,10 +8,11 @@ interface Props {
 }
 
 const { artist, className } = Astro.props;
+const slug = artist.id.replace(/\.md$/, "");
 ---
 
 <a
-  href={`/artists/${artist.slug}`}
+  href={`/artists/${slug}`}
   class:list={[
     "group relative overflow-hidden rounded-xl border border-white/10 bg-charcoal duotone-card glow-border aspect-[4/5] block",
     className,

@@ -6,18 +6,22 @@ import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const artists = await getCollection("artists");
-  return artists.map((artist) => ({
-    params: { slug: artist.slug },
-    props: { artist },
-  }));
+  return artists.map((artist) => {
+    const slug = artist.id.replace(/\.md$/, "");
+    return {
+      params: { slug },
+      props: { artist },
+    };
+  });
 }
 
 const { artist } = Astro.props;
+const slug = artist.id.replace(/\.md$/, "");
 
 // Get releases for this artist
 const allReleases = await getCollection("releases");
 const artistReleases = allReleases.filter(
-  (release) => release.data.artist.slug === artist.slug,
+  (release) => release.data.artist.id === artist.id,
 );
 
 // Sort by date descending

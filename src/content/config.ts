@@ -2,11 +2,16 @@ import { defineCollection, reference, z } from "astro:content";
 
 const artists = defineCollection({
   type: "content",
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
+      beatport_id: z.number(),
       name: z.string(),
       bio: z.string(),
-      image: image(),
+      image: z.string(),
+      dj_association: z.number(),
+      enabled: z.boolean(),
+      slug: z.string().nullable().optional(),
+      website: z.string().nullable(),
       socials: z.object({
         instagram: z.string().url().optional(),
         soundcloud: z.string().url().optional(),
@@ -18,11 +23,11 @@ const artists = defineCollection({
 
 const releases = defineCollection({
   type: "content",
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       artist: reference("artists"),
-      cover: image(),
+      cover: z.string(),
       date: z.date(),
       type: z.enum(["Single", "EP", "Album"]),
       links: z.object({

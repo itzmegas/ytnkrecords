@@ -10,7 +10,7 @@ interface Props {
   title?: string;
 }
 
-const { title = "Ytnk Records" } = Astro.props;
+const { title = "" } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,18 +30,20 @@ const { title = "Ytnk Records" } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
+    <title>{`YTNK Records | ${title}`}</title>
   </head>
   <body class="text-white selection:bg-neon-purple/30 relative min-h-screen">
-    <div class="fixed inset-0 bg-dark -z-20"></div>
+    <!--    <div class="fixed inset-0 bg-dark/90 -z-20"></div> -->
     <Header />
     <main class="min-h-screen relative z-10">
-      <div class="w-full h-full absolute top-0 left-0 z-0 overflow-hidden">
+      <div
+        class="fixed inset-0 z-0 overflow-hidden pointer-events-none timeline-scroll animate-scroll-zoom-rotate"
+      >
         <Image
           id="bg-image"
           src={bgImage}
           alt="bg-image"
-          class="w-full h-full object-cover opacity-20"
+          class="w-full h-full object-cover opacity-15"
         />
       </div>
       <slot />

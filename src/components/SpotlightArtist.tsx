@@ -1,5 +1,12 @@
 import type { CollectionEntry } from "astro:content";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import {
+  IconBrandInstagram,
+  IconBrandSoundcloud,
+  IconBrandSpotify,
+  IconBrandYoutube,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 import Button from "./ui/Button";
@@ -45,6 +52,8 @@ const SpotlightArtist = ({ artists }: SpotlightArtistProps) => {
 
   // Resolve image source: it's a string URL from the content collection
   const imageSrc = artist.data.image;
+
+  const defaultIconProps = { stroke: 1.2 };
 
   return (
     <div className="flex flex-col lg:flex-row items-center gap-12 relative px-2 lg:px-16">
@@ -105,26 +114,43 @@ const SpotlightArtist = ({ artists }: SpotlightArtistProps) => {
         <p className="text-slate-400 font-sans text-lg leading-relaxed line-clamp-4">
           {artist.data.bio}
         </p>
-        <div className="flex gap-4 items-center">
-          <a
-            href={`/artists/${slug}`}
-            className="bg-primary/20 border border-primary/40 text-primary px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-white transition-all"
-          >
-            Latest Tracks
-          </a>
+        <div className="flex flex-col gap-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-white">
+            Links
+          </span>
           <div className="flex gap-4">
-            <button
-              className="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors"
-              type="button"
-            >
-              <span className="material-symbols-outlined">share</span>
-            </button>
-            <button
-              className="p-2 bg-white/5 rounded-lg hover:text-primary transition-colors"
-              type="button"
-            >
-              <span className="material-symbols-outlined">rss_feed</span>
-            </button>
+            {artist.data.socials.instagram && (
+              <a
+                href={artist.data.socials.instagram}
+                className="border border-white/40 p-2 rounded-full"
+              >
+                <IconBrandInstagram {...defaultIconProps} />
+              </a>
+            )}
+            {artist.data.socials.spotify && (
+              <a
+                href={artist.data.socials.spotify}
+                className="border border-white/40 p-2 rounded-full"
+              >
+                <IconBrandSpotify {...defaultIconProps} />
+              </a>
+            )}
+            {artist.data.socials.youtube && (
+              <a
+                href={artist.data.socials.youtube}
+                className="border border-white/40 p-2 rounded-full"
+              >
+                <IconBrandYoutube {...defaultIconProps} />
+              </a>
+            )}
+            {artist.data.socials.soundcloud && (
+              <a
+                href={artist.data.socials.soundcloud}
+                className="border border-white/40 p-2 rounded-full"
+              >
+                <IconBrandSoundcloud {...defaultIconProps} />
+              </a>
+            )}
           </div>
         </div>
       </div>

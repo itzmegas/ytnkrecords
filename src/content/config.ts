@@ -17,6 +17,8 @@ const artists = defineCollection({
         soundcloud: z.string().url().optional(),
         spotify: z.string().url().optional(),
         facebook: z.string().url().optional(),
+        youtube: z.string().url().optional(),
+        bandcamp: z.string().url().optional(),
       }),
     }),
 });

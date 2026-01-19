@@ -12,43 +12,59 @@ releases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   <div class="relative z-10 min-h-screen">
     <main class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
       <!-- Heading Section -->
-      <div class="mb-16">
-        <div class="w-12 h-1 bg-primary mb-6"></div>
-        <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tighter text-white uppercase italic mb-4">
-          The <span class="text-primary glow-text">Discography</span>
+      <div class="mb-16 mt-10">
+        <h1
+          class="text-6xl md:text-8xl font-black leading-none tracking-tighter text-white uppercase italic mb-4"
+        >
+          <span class="text-primary glow-text">Releases</span>
         </h1>
         <p class="text-white/50 text-xl font-light max-w-2xl">
-          Sonic architectures and ritualistic vibrations. Explore the complete history of our frequencies.
+          Sonic architectures and ritualistic vibrations. Explore the complete
+          history of our frequencies.
         </p>
       </div>
 
       <!-- Filters (Static for now) -->
       <div class="flex flex-wrap gap-4 mb-12">
-        <button class="px-6 py-2 bg-primary text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all glow-border">
+        <button
+          class="px-6 py-2 bg-primary text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all glow-border"
+        >
           All Releases
         </button>
-        <button class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all">
+        <button
+          class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all"
+        >
           Albums
         </button>
-        <button class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all">
+        <button
+          class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all"
+        >
           EPs
         </button>
-        <button class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all">
+        <button
+          class="px-6 py-2 bg-white/5 border border-white/10 hover:border-primary/50 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all"
+        >
           Singles
         </button>
       </div>
 
       <!-- Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-        {releases.map((release) => (
-          <ReleaseCard release={release} />
-        ))}
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
+      >
+        {releases.map((release) => <ReleaseCard release={release} />)}
       </div>
 
       <!-- Pagination/Footer -->
-      <div class="mt-32 flex flex-col items-center justify-center gap-6 text-center border-t border-white/5 pt-20">
+      <div
+        class="mt-32 flex flex-col items-center justify-center gap-6 text-center border-t border-white/5 pt-20"
+      >
         <div class="w-16 h-1 bg-primary/30 rounded-full"></div>
-        <p class="text-white/30 text-[10px] font-medium uppercase tracking-[0.5em]">Transmuting Reality</p>
+        <p
+          class="text-white/30 text-[10px] font-medium uppercase tracking-[0.5em]"
+        >
+          Transmuting Reality
+        </p>
       </div>
     </main>
   </div>

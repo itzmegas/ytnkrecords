@@ -8,11 +8,10 @@ import {
   IconShoppingCart,
 } from "@tabler/icons-react";
 import ReleaseCard from "@/components/ReleaseCard.astro";
+import SpotlightArtist from "@/components/SpotlightArtist";
 import Badge from "@/components/ui/Badge.astro";
-
 import Layout from "@/layouts/Layout.astro";
 import { getLabelReleases } from "@/lib/beatport";
-import SpotlightArtist from "@/components/SpotlightArtist";
 
 const beatportReleases = await getLabelReleases();
 const artists = await getCollection("artists");

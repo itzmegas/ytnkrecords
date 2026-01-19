@@ -30,25 +30,24 @@ artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 <Layout title={`${artist.data.name} | Ytnk Records`}>
   <!-- Hero Section -->
-  <div class="relative h-[80vh] w-full overflow-hidden">
-    <div class="absolute inset-0">
-      <Image
-        src={artist.data.image}
-        alt={artist.data.name}
-        width={1920}
-        height={1080}
-        class="w-full h-full object-cover"
-      />
-    </div>
+  <div class="relative h-[60vh] w-full overflow-hidden">
     <div class="absolute inset-0 glitch-overlay"></div>
-    <div class="absolute bottom-0 left-0 w-full p-6 lg:p-24 flex flex-col items-start gap-4">
-      <span class="bg-primary/20 backdrop-blur-md px-4 py-1 rounded-full text-primary border border-primary/30 font-display text-xs font-bold tracking-[0.2em] uppercase">
+    <div
+      class="absolute bottom-0 left-0 w-full p-6 lg:p-24 flex flex-col items-start gap-4"
+    >
+      <span
+        class="bg-primary/20 backdrop-blur-md px-4 py-1 rounded-full text-primary border border-primary/30 font-display text-xs font-bold tracking-[0.2em] uppercase"
+      >
         Featured Artist
       </span>
-      <h2 class="font-display text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none italic">
-        {artist.data.name.split(' ')[0]}<br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-neon-cyan">
-          {artist.data.name.split(' ').slice(1).join(' ')}
+      <h2
+        class="font-display text-7xl lg:text-9xl font-black uppercase tracking-tighter leading-none italic"
+      >
+        {artist.data.name.split(" ")[0]}<br />
+        <span
+          class="text-transparent bg-clip-text bg-linear-to-r from-primary to-neon-cyan"
+        >
+          {artist.data.name.split(" ").slice(1).join(" ")}
         </span>
       </h2>
     </div>
@@ -58,9 +57,13 @@ artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   <main class="max-w-7xl mx-auto px-6 lg:px-12 -mt-20 relative z-10 pb-24">
     <div class="grid grid-cols-12 gap-8">
       <!-- Bio Card -->
-      <div class="col-span-12 lg:col-span-8 bg-surface-dark/80 backdrop-blur-xl rounded-xl p-8 lg:p-12 border border-white/5 cyan-glow">
+      <div
+        class="col-span-12 lg:col-span-8 bg-surface-dark/80 backdrop-blur-xl rounded-xl p-8 lg:p-12 border border-white/5 cyan-glow"
+      >
         <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="size-48 shrink-0 rounded-lg overflow-hidden border-2 border-primary/30">
+          <div
+            class="size-48 shrink-0 rounded-lg overflow-hidden border-2 border-primary/30"
+          >
             <Image
               src={artist.data.image}
               alt={artist.data.name}
@@ -72,14 +75,26 @@ artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
           <div class="flex flex-col gap-6">
             <div class="flex justify-between items-start">
               <div>
-                <h3 class="font-display text-3xl font-bold mb-2 uppercase tracking-tight">Artist Bio</h3>
+                <h3
+                  class="font-display text-3xl font-bold mb-2 uppercase tracking-tight"
+                >
+                  Artist Bio
+                </h3>
                 <div class="flex gap-2">
-                  <span class="material-symbols-outlined text-primary text-sm">location_on</span>
-                  <p class="text-gray-400 text-sm font-display uppercase tracking-wider">International / The Void</p>
+                  <span class="material-symbols-outlined text-primary text-sm"
+                    >location_on</span
+                  >
+                  <p
+                    class="text-gray-400 text-sm font-display uppercase tracking-wider"
+                  >
+                    International / The Void
+                  </p>
                 </div>
               </div>
               <div class="flex gap-3">
-                <button class="size-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-all">
+                <button
+                  class="size-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-all"
+                >
                   <span class="material-symbols-outlined text-lg">share</span>
                 </button>
               </div>
@@ -88,11 +103,15 @@ artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
               {artist.data.bio}
             </p>
             <div class="flex flex-wrap gap-4">
-              <button class="flex items-center gap-2 bg-primary px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest transition-transform hover:scale-105">
+              <button
+                class="flex items-center gap-2 bg-primary px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest transition-transform hover:scale-105"
+              >
                 <span class="material-symbols-outlined">event_seat</span>
                 Secure Booking
               </button>
-              <button class="flex items-center gap-2 border border-white/20 hover:border-white/40 px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest transition-all">
+              <button
+                class="flex items-center gap-2 border border-white/20 hover:border-white/40 px-8 py-3 rounded-lg font-display font-bold uppercase tracking-widest transition-all"
+              >
                 <span class="material-symbols-outlined">download</span>
                 EPK
               </button>
@@ -103,66 +122,109 @@ artistReleases.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
       <!-- Stats Column -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
-        <div class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5">
-          <h4 class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Technical Specs</h4>
+        <div
+          class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5"
+        >
+          <h4
+            class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest mb-6"
+          >
+            Technical Specs
+          </h4>
           <div class="space-y-6">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-neon-cyan">speed</span>
+                <span class="material-symbols-outlined text-neon-cyan"
+                  >speed</span
+                >
                 <span class="text-sm font-display uppercase">BPM Range</span>
               </div>
               <span class="text-xl font-bold font-display">145 — 150</span>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-neon-cyan">waves</span>
+                <span class="material-symbols-outlined text-neon-cyan"
+                  >waves</span
+                >
                 <span class="text-sm font-display uppercase">Style</span>
               </div>
               <span class="text-xl font-bold font-display">Psychedelic</span>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-neon-cyan">album</span>
+                <span class="material-symbols-outlined text-neon-cyan"
+                  >album</span
+                >
                 <span class="text-sm font-display uppercase">Releases</span>
               </div>
-              <span class="text-xl font-bold font-display">{artistReleases.length} Total</span>
+              <span class="text-xl font-bold font-display"
+                >{artistReleases.length} Total</span
+              >
             </div>
           </div>
         </div>
         <!-- Social Connect -->
-        <div class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5 flex flex-col gap-4">
-          <h4 class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest">Connect</h4>
+        <div
+          class="bg-surface-dark/80 backdrop-blur-xl rounded-xl p-6 border border-white/5 flex flex-col gap-4"
+        >
+          <h4
+            class="font-display text-xs font-bold text-gray-500 uppercase tracking-widest"
+          >
+            Connect
+          </h4>
           <div class="grid grid-cols-2 gap-3">
-            {artist.data.socials.spotify && (
-              <a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href={artist.data.socials.spotify}>
-                <div class="size-2 bg-[#1DB954] rounded-full"></div>
-                <span class="text-xs font-display font-bold">SPOTIFY</span>
-              </a>
-            )}
-            {artist.data.socials.soundcloud && (
-              <a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href={artist.data.socials.soundcloud}>
-                <div class="size-2 bg-[#ff5500] rounded-full"></div>
-                <span class="text-xs font-display font-bold">SOUNDCLOUD</span>
-              </a>
-            )}
-            {artist.data.socials.instagram && (
-              <a class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all" href={artist.data.socials.instagram}>
-                <div class="size-2 bg-primary rounded-full"></div>
-                <span class="text-xs font-display font-bold">INSTAGRAM</span>
-              </a>
-            )}
+            {
+              artist.data.socials.spotify && (
+                <a
+                  class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all"
+                  href={artist.data.socials.spotify}
+                >
+                  <div class="size-2 bg-[#1DB954] rounded-full" />
+                  <span class="text-xs font-display font-bold">SPOTIFY</span>
+                </a>
+              )
+            }
+            {
+              artist.data.socials.soundcloud && (
+                <a
+                  class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all"
+                  href={artist.data.socials.soundcloud}
+                >
+                  <div class="size-2 bg-[#ff5500] rounded-full" />
+                  <span class="text-xs font-display font-bold">SOUNDCLOUD</span>
+                </a>
+              )
+            }
+            {
+              artist.data.socials.instagram && (
+                <a
+                  class="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:neon-border transition-all"
+                  href={artist.data.socials.instagram}
+                >
+                  <div class="size-2 bg-primary rounded-full" />
+                  <span class="text-xs font-display font-bold">INSTAGRAM</span>
+                </a>
+              )
+            }
           </div>
         </div>
       </div>
 
       <!-- Discography -->
-      <div class="col-span-12 mt-12 flex items-end justify-between border-b border-white/10 pb-4">
+      <div
+        class="col-span-12 mt-12 flex items-end justify-between border-b border-white/10 pb-4"
+      >
         <div>
-          <h2 class="font-display text-4xl font-bold uppercase tracking-tight">Discography</h2>
-          <p class="text-gray-500 text-sm uppercase tracking-widest mt-1">Latest frequencies from the lab</p>
+          <h2 class="font-display text-4xl font-bold uppercase tracking-tight">
+            Discography
+          </h2>
+          <p class="text-gray-500 text-sm uppercase tracking-widest mt-1">
+            Latest frequencies from the lab
+          </p>
         </div>
       </div>
-      <div class="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div
+        class="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
         {artistReleases.map((release) => <ReleaseCard release={release} />)}
       </div>
     </div>

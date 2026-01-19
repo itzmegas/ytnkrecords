@@ -7,86 +7,124 @@ const artists = await getCollection("artists");
 ---
 
 <Layout title="Artists | Ytnk Records">
-  <div class="fractal-overlay"></div>
-  <div class="relative z-10 flex min-h-screen flex-col">
-    <main class="flex flex-1 px-6 lg:px-10 py-8 gap-8 max-w-[1600px] mx-auto w-full">
-      <!-- Left Sidebar Filters (Static for now) -->
-      <aside class="hidden lg:flex w-72 flex-shrink-0 flex-col gap-8 sticky top-24 h-fit">
-        <!-- Search -->
-        <div class="relative">
-          <label class="flex flex-col w-full">
-            <div class="flex w-full items-stretch rounded-xl h-12 bg-charcoal border border-white/5 glow-border">
-              <div class="text-white/50 flex items-center justify-center pl-4">
-                <span class="material-symbols-outlined">search</span>
-              </div>
-              <input class="form-input flex w-full border-none bg-transparent focus:ring-0 text-white placeholder:text-white/30 px-3 text-sm font-medium" placeholder="Search the roster..."/>
+  <main
+    class="flex flex-1 px-6 lg:px-10 py-8 gap-8 max-w-[1600px] mx-auto w-full"
+  >
+    <!-- Left Sidebar Filters (Static for now) -->
+    <aside
+      class="hidden lg:flex w-72 shrink-0 flex-col gap-8 sticky top-24 h-fit"
+    >
+      <!-- Search -->
+      <div class="relative mt-28">
+        <label class="flex flex-col w-full">
+          <div
+            class="flex w-full items-stretch rounded-xl h-12 bg-charcoal border border-white/5 glow-border"
+          >
+            <div class="text-white/50 flex items-center justify-center pl-4">
+              <span class="material-symbols-outlined">search</span>
             </div>
-          </label>
-        </div>
-        <!-- Genre Filter -->
-        <div class="flex flex-col gap-4 bg-charcoal/50 p-6 rounded-xl border border-white/5 backdrop-blur-sm">
-          <h3 class="text-xs font-black tracking-widest text-primary uppercase">Sub-Genres</h3>
-          <div class="flex flex-col gap-2">
-            <button class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-white border border-primary/30 group text-left">
-              <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">grid_view</span>
-              <span class="text-sm font-semibold">All Artists</span>
-            </button>
-            <button class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left">
-              <span class="material-symbols-outlined text-neon-cyan">waves</span>
-              <span class="text-sm">Full-on</span>
-            </button>
-            <button class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left">
-              <span class="material-symbols-outlined text-accent">forest</span>
-              <span class="text-sm">Forest</span>
-            </button>
-            <button class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left">
-              <span class="material-symbols-outlined text-primary">nights_stay</span>
-              <span class="text-sm">Twilight</span>
-            </button>
+            <input
+              class="form-input flex w-full border-none bg-transparent focus:ring-0 text-white placeholder:text-white/30 px-3 text-sm font-medium"
+              placeholder="Search the roster..."
+            />
           </div>
-        </div>
-        <!-- Booking Status -->
-        <div class="flex flex-col gap-4 bg-charcoal/50 p-6 rounded-xl border border-white/5 backdrop-blur-sm">
-          <h3 class="text-xs font-black tracking-widest text-primary uppercase">Availability</h3>
-          <div class="flex flex-wrap gap-2">
-            <button class="flex h-8 items-center justify-center gap-x-2 rounded-lg bg-white/5 border border-white/10 px-3 hover:border-primary transition-colors">
-              <span class="text-xs font-medium">World Tour</span>
-            </button>
-            <button class="flex h-8 items-center justify-center gap-x-2 rounded-lg bg-white/5 border border-white/10 px-3 hover:border-primary transition-colors">
-              <span class="text-xs font-medium">New Signings</span>
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Main Content Area -->
-      <section class="flex-1">
-        <!-- Heading Section -->
-        <div class="mb-10 flex flex-col gap-2">
-          <h1 class="text-6xl md:text-7xl font-black leading-none tracking-tighter text-white uppercase italic">
-            The <span class="text-primary glow-text">Roster</span>
-          </h1>
-          <p class="text-white/50 text-xl font-light max-w-2xl">
-            Pioneering the frequency of the psychedelic underground. A curated collective of sound architects.
-          </p>
-        </div>
-
-        <!-- Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artists.map((artist) => (
-            <ArtistCard artist={artist} />
-          ))}
-        </div>
-
-        <!-- Load More / Footer Element -->
-        <div class="mt-20 flex flex-col items-center justify-center gap-6 text-center border-t border-white/5 pt-20 pb-10">
-          <div class="w-16 h-1 bg-primary/30 rounded-full"></div>
-          <p class="text-white/30 text-xs font-medium uppercase tracking-[0.5em]">Expanding the Hive Mind</p>
-          <button class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-black uppercase tracking-widest transition-all rounded-lg shadow-[0_0_20px_rgba(207,32,238,0.2)]">
-            Load Full Collective
+        </label>
+      </div>
+      <!-- Genre Filter -->
+      <div
+        class="flex flex-col gap-4 bg-charcoal/50 p-6 rounded-xl border border-white/5 backdrop-blur-sm"
+      >
+        <h3 class="text-xs font-black tracking-widest text-primary uppercase">
+          Sub-Genres
+        </h3>
+        <div class="flex flex-col gap-2">
+          <button
+            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-white border border-primary/30 group text-left"
+          >
+            <span
+              class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform"
+              >grid_view</span
+            >
+            <span class="text-sm font-semibold">All Artists</span>
+          </button>
+          <button
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left"
+          >
+            <span class="material-symbols-outlined text-neon-cyan">waves</span>
+            <span class="text-sm">Full-on</span>
+          </button>
+          <button
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left"
+          >
+            <span class="material-symbols-outlined text-accent">forest</span>
+            <span class="text-sm">Forest</span>
+          </button>
+          <button
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-white/70 hover:text-white transition-all text-left"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >nights_stay</span
+            >
+            <span class="text-sm">Twilight</span>
           </button>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+      <!-- Booking Status -->
+      <div
+        class="flex flex-col gap-4 bg-charcoal/50 p-6 rounded-xl border border-white/5 backdrop-blur-sm"
+      >
+        <h3 class="text-xs font-black tracking-widest text-primary uppercase">
+          Availability
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <button
+            class="flex h-8 items-center justify-center gap-x-2 rounded-lg bg-white/5 border border-white/10 px-3 hover:border-primary transition-colors"
+          >
+            <span class="text-xs font-medium">World Tour</span>
+          </button>
+          <button
+            class="flex h-8 items-center justify-center gap-x-2 rounded-lg bg-white/5 border border-white/10 px-3 hover:border-primary transition-colors"
+          >
+            <span class="text-xs font-medium">New Signings</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <section class="flex-1">
+      <!-- Heading Section -->
+      <div class="mb-10 flex flex-col gap-2">
+        <h1
+          class="text-6xl md:text-7xl font-black leading-none tracking-tighter text-white uppercase italic mt-20"
+        >
+          The <span class="text-primary glow-text">Roster</span>
+        </h1>
+        <p class="text-white/50 text-xl font-light max-w-2xl">
+          Pioneering the frequency of the psychedelic underground. A curated
+          collective of sound architects.
+        </p>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {artists.map((artist) => <ArtistCard artist={artist} />)}
+      </div>
+
+      <!-- Load More / Footer Element -->
+      <div
+        class="mt-20 flex flex-col items-center justify-center gap-6 text-center border-t border-white/5 pt-20 pb-10"
+      >
+        <div class="w-16 h-1 bg-primary/30 rounded-full"></div>
+        <p class="text-white/30 text-xs font-medium uppercase tracking-[0.5em]">
+          Expanding the Hive Mind
+        </p>
+        <button
+          class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-black uppercase tracking-widest transition-all rounded-lg shadow-[0_0_20px_rgba(207,32,238,0.2)]"
+        >
+          Load Full Collective
+        </button>
+      </div>
+    </section>
+  </main>
 </Layout>
